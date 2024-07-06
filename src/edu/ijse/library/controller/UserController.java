@@ -20,4 +20,8 @@ public class UserController {
     public String login(UserDto userDto) throws Exception{
         return userService.login(userDto);
     }
+    
+    public String register(UserDto userDto) throws  Exception{
+        return userService.register(userDto);
+    }
 }

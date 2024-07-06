@@ -33,8 +33,14 @@ public class UserDto {
         this.userName = userName;
         this.password = password;
     }
-    
-    
+
+    public UserDto(String code, String firstName, String lastName, String userName, String password) {
+        this.code = code;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
+    }
 
     /**
      * @return the userID

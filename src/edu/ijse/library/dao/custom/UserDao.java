@@ -14,5 +14,7 @@ import edu.ijse.library.entity.UserEntity;
 public interface UserDao extends SuperDAO {
 
     String login(UserEntity userEntity) throws Exception;
+    
+    String register(UserEntity userEntity) throws Exception;
 
 }

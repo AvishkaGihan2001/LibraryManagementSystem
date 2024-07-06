@@ -4,18 +4,38 @@
  */
 package edu.ijse.library.dao.custom.impl;
 
+import edu.ijse.library.dao.CrudUtil;
 import edu.ijse.library.dao.custom.UserDao;
 import edu.ijse.library.entity.UserEntity;
+import java.sql.ResultSet;
 
 /**
  *
  * @author AVISHKA GIHAN
  */
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
     @Override
     public String login(UserEntity userEntity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ResultSet resultSet = CrudUtil.executeQuery("Select * from user where userName = ? && password = ? ",
+                userEntity.getUserName(),
+                userEntity.getPassword()
+        );
+        boolean isLogin = resultSet.next();
+        return isLogin ? "Login Successful" : "Login Failed";
     }
-    
+
+    @Override
+    public String register(UserEntity userEntity) throws Exception {
+        boolean isSaved = CrudUtil.executeUpdate("INSERT INTO user VALUES(?,?,?,?,?,?)",
+                0,
+                userEntity.getCode(),
+                userEntity.getFirstName(),
+                userEntity.getLastName(),
+                userEntity.getUserName(),
+                userEntity.getPassword()
+                );
+        return isSaved ? "Success" : "Fail";
+    }
+
 }

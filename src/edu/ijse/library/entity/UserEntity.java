@@ -9,7 +9,7 @@ package edu.ijse.library.entity;
  * @author AVISHKA GIHAN
  */
 public class UserEntity {
-    
+
     private int userID;
     private String code;
     private String firstName;
@@ -30,6 +30,14 @@ public class UserEntity {
     }
 
     public UserEntity(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public UserEntity(String code, String firstName, String lastName, String userName, String password) {
+        this.code = code;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.userName = userName;
         this.password = password;
     }
@@ -122,7 +130,5 @@ public class UserEntity {
     public String toString() {
         return "UserEntity{" + "userID=" + userID + ", code=" + code + ", firstName=" + firstName + ", lastName=" + lastName + ", userName=" + userName + ", password=" + password + '}';
     }
-    
-    
-    
+
 }

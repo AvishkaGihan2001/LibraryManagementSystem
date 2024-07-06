@@ -14,5 +14,6 @@ import edu.ijse.library.service.SuperService;
 public interface UserService extends SuperService {
 
     public String login(UserDto userDto) throws Exception;
+    public String register(UserDto userDto) throws Exception;
 
 }
