@@ -29,6 +29,16 @@ public class MemberDto {
         this.address = address;
     }
 
+    public MemberDto(String code, String firstName, String lastName, String phone, String address) {
+        this.code = code;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.address = address;
+    }
+    
+    
+
     /**
      * @return the memberID
      */

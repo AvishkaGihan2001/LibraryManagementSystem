@@ -4,39 +4,69 @@
  */
 package edu.ijse.library.dao.custom.impl;
 
+import edu.ijse.library.dao.CrudUtil;
 import edu.ijse.library.dao.custom.MemberDao;
+import edu.ijse.library.dto.MemberDto;
 import edu.ijse.library.entity.MemberEntity;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
  *
  * @author AVISHKA GIHAN
  */
-public class MemberDaoImpl implements MemberDao{
+public class MemberDaoImpl implements MemberDao {
 
     @Override
     public String save(MemberEntity memberEntity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean isSaved = CrudUtil.executeUpdate("INSERT INTO member VALUES(?,?,?,?,?,?)",
+                0,
+                memberEntity.getCode(),
+                memberEntity.getFirstName(),
+                memberEntity.getLastName(),
+                memberEntity.getPhone(),
+                memberEntity.getAddress()
+        );
+        return isSaved ? "Success" : "Fail";
     }
 
     @Override
     public String update(MemberEntity memberEntity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        boolean isUpdated = CrudUtil.executeUpdate("UPDATE member SET firstName = ?, lastName = ?, phone = ?, address = ? WHERE code = ?",
+                memberEntity.getFirstName(),
+                memberEntity.getLastName(),
+                memberEntity.getPhone(),
+                memberEntity.getAddress(),
+                memberEntity.getCode()
+        );
+        return isUpdated ? "Success" : "Fail";
     }
 
     @Override
-    public String delete(String ID) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String delete(String code) throws Exception {
+        boolean isDeleted = CrudUtil.executeUpdate("DELETE FROM member WHERE code = ?", code);
+        return isDeleted ? "Success" : "Fail";
     }
 
     @Override
-    public MemberEntity get(String ID) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public MemberDto get(String code) throws Exception {
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM member WHERE code = ?", code);
+        if (rst.next()) {
+            MemberDto memberDto = new MemberDto(
+                    rst.getString("code"),
+                    rst.getString("firstName"),
+                    rst.getString("lastName"),
+                    rst.getString("phone"),
+                    rst.getString("address")
+            );
+            return memberDto;
+        }
+        return null;
     }
 
     @Override
     public ArrayList<MemberEntity> getAll() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

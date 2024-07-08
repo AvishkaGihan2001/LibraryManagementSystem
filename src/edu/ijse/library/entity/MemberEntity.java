@@ -29,6 +29,14 @@ public class MemberEntity {
         this.address = address;
     }
 
+    public MemberEntity(String code, String firstName, String lastName, String phone, String address) {
+        this.code = code;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.address = address;
+    }
+
     /**
      * @return the memberID
      */

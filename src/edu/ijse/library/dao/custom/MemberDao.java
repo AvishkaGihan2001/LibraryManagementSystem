@@ -5,6 +5,7 @@
 package edu.ijse.library.dao.custom;
 
 import edu.ijse.library.dao.SuperDAO;
+import edu.ijse.library.dto.MemberDto;
 import edu.ijse.library.entity.MemberEntity;
 import java.util.ArrayList;
 
@@ -18,9 +19,9 @@ public interface MemberDao extends SuperDAO {
 
     String update(MemberEntity memberEntity) throws Exception;
 
-    String delete(String ID) throws Exception;
+    String delete(String code) throws Exception;
 
-    MemberEntity get(String ID) throws Exception;
+    MemberDto get(String code) throws Exception;
 
     ArrayList<MemberEntity> getAll() throws Exception;
 

@@ -4,10 +4,31 @@
  */
 package edu.ijse.library.controller;
 
+import edu.ijse.library.dto.MemberDto;
+import edu.ijse.library.service.ServiceFactory;
+import edu.ijse.library.service.custom.MemberService;
+
 /**
  *
  * @author AVISHKA GIHAN
  */
 public class MemberController {
-    
+
+    private MemberService memberService = (MemberService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.MEMBER);
+
+    public String save(MemberDto memberDto) throws Exception {
+        return memberService.save(memberDto);
+    }
+
+    public String update(MemberDto memberDto) throws Exception {
+        return memberService.update(memberDto);
+    }
+
+    public String delete(String code) throws Exception {
+        return memberService.delete(code);
+    }
+
+    public MemberDto get(String code) throws Exception {
+        return memberService.get(code);
+    }
 }

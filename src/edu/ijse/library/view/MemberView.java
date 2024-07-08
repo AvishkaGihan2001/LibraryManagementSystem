@@ -4,23 +4,23 @@
  */
 package edu.ijse.library.view;
 
-import edu.ijse.library.controller.CategoryController;
-import edu.ijse.library.dto.CategoryDto;
+import edu.ijse.library.controller.MemberController;
+import edu.ijse.library.dto.MemberDto;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author AVISHKA GIHAN
  */
-public class CategoryView extends javax.swing.JFrame {
+public class MemberView extends javax.swing.JFrame {
 
     /**
-     * Creates new form CategoryView
+     * Creates new form MemberView
      */
-    private final CategoryController CATEGORY_CONTROLLER;
+    private final MemberController MEMBER_CONTROLLER;
 
-    public CategoryView() {
-        CATEGORY_CONTROLLER = new CategoryController();
+    public MemberView() {
+        MEMBER_CONTROLLER = new MemberController();
         initComponents();
     }
 
@@ -33,22 +33,36 @@ public class CategoryView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblPackSize = new javax.swing.JLabel();
+        txtPhone = new javax.swing.JTextField();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        lblPackSize2 = new javax.swing.JLabel();
         txtCode = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
-        txtDescription = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         CustomerTable = new javax.swing.JTable();
         btnInsert = new javax.swing.JButton();
-        txtName = new javax.swing.JTextField();
         lblHeader = new javax.swing.JLabel();
+        lblPackSize2 = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
+        txtFirstName = new javax.swing.JTextField();
         btnClear = new javax.swing.JButton();
         lblItemCode = new javax.swing.JLabel();
         lblDescription = new javax.swing.JLabel();
+        lblDescription1 = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lblPackSize.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPackSize.setText("Phone number   :");
+
+        txtPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPhone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPhoneActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
         btnUpdate.setText("Update");
@@ -66,9 +80,6 @@ public class CategoryView extends javax.swing.JFrame {
             }
         });
 
-        lblPackSize2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblPackSize2.setText("Description   :");
-
         txtCode.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,13 +92,6 @@ public class CategoryView extends javax.swing.JFrame {
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSearchActionPerformed(evt);
-            }
-        });
-
-        txtDescription.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtDescription.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescriptionActionPerformed(evt);
             }
         });
 
@@ -127,17 +131,27 @@ public class CategoryView extends javax.swing.JFrame {
             }
         });
 
-        txtName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        lblHeader.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader.setText("Member Form");
+        lblHeader.setToolTipText("");
+
+        lblPackSize2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblPackSize2.setText("Address   :");
+
+        txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtAddress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                txtAddressActionPerformed(evt);
             }
         });
 
-        lblHeader.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
-        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeader.setText("Category Form");
-        lblHeader.setToolTipText("");
+        txtFirstName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFirstNameActionPerformed(evt);
+            }
+        });
 
         btnClear.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
         btnClear.setText("Clear");
@@ -151,7 +165,17 @@ public class CategoryView extends javax.swing.JFrame {
         lblItemCode.setText("Code :");
 
         lblDescription.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblDescription.setText("Name  :");
+        lblDescription.setText("First Name  :");
+
+        lblDescription1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblDescription1.setText("Last Name  :");
+
+        txtLastName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtLastName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLastNameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,32 +186,8 @@ public class CategoryView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(294, 294, 294)
-                                .addComponent(lblPackSize2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblItemCode, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDescription, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(45, 45, 45)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(276, 276, 276))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(57, 57, 57)
-                                        .addComponent(btnSearch)))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnInsert)
@@ -197,44 +197,81 @@ public class CategoryView extends javax.swing.JFrame {
                                 .addComponent(btnDelete)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnClear)))
-                        .addGap(12, 12, 12))))
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblDescription1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblDescription)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(373, 373, 373))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPackSize2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblPackSize, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(259, 259, 259))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblItemCode)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnSearch)
+                .addGap(269, 269, 269))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblItemCode)
-                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnSearch))
-                        .addGap(68, 68, 68))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDescription))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblPackSize2)
-                    .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblItemCode)
+                    .addComponent(btnSearch))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnUpdate)
-                        .addComponent(btnDelete)
-                        .addComponent(btnClear))
-                    .addComponent(btnInsert))
+                    .addComponent(lblDescription)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDescription1)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPackSize))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPackSize2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInsert)
+                    .addComponent(btnUpdate)
+                    .addComponent(btnDelete)
+                    .addComponent(btnClear))
+                .addGap(12, 12, 12)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPhoneActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -254,10 +291,6 @@ public class CategoryView extends javax.swing.JFrame {
         search();
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void txtDescriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescriptionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescriptionActionPerformed
-
     private void CustomerTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CustomerTableAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_CustomerTableAncestorAdded
@@ -271,14 +304,22 @@ public class CategoryView extends javax.swing.JFrame {
         save();
     }//GEN-LAST:event_btnInsertActionPerformed
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
+    }//GEN-LAST:event_txtAddressActionPerformed
+
+    private void txtFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFirstNameActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         clear();
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void txtLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLastNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLastNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,21 +338,20 @@ public class CategoryView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MemberView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CategoryView().setVisible(true);
+                new MemberView().setVisible(true);
             }
         });
     }
@@ -325,24 +365,31 @@ public class CategoryView extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblDescription1;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblItemCode;
+    private javax.swing.JLabel lblPackSize;
     private javax.swing.JLabel lblPackSize2;
+    private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCode;
-    private javax.swing.JTextField txtDescription;
-    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
+    private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 
     private void save() {
         try {
-            CategoryDto categoryDto = new CategoryDto(
+            MemberDto memberDto = new MemberDto(
                     txtCode.getText(),
-                    txtName.getText(),
-                    txtDescription.getText()
+                    txtFirstName.getText(),
+                    txtLastName.getText(),
+                    txtPhone.getText(),
+                    txtAddress.getText()
             );
-            String resp = CATEGORY_CONTROLLER.save(categoryDto);
+            String resp = MEMBER_CONTROLLER.save(memberDto);
             JOptionPane.showMessageDialog(this, resp);
             clear();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -351,20 +398,25 @@ public class CategoryView extends javax.swing.JFrame {
 
     private void clear() {
         txtCode.setText("");
-        txtName.setName("");
-        txtDescription.setText("");
+        txtFirstName.setText("");
+        txtLastName.setText("");
+        txtPhone.setText("");
+        txtAddress.setText("");
     }
 
     private void update() {
         try {
-            CategoryDto categoryDto = new CategoryDto(
+            MemberDto memberDto = new MemberDto(
                     txtCode.getText(),
-                    txtName.getText(),
-                    txtDescription.getText()
+                    txtFirstName.getText(),
+                    txtLastName.getText(),
+                    txtPhone.getText(),
+                    txtAddress.getText()
             );
-            String resp = CATEGORY_CONTROLLER.update(categoryDto);
+            String resp = MEMBER_CONTROLLER.update(memberDto);
             JOptionPane.showMessageDialog(this, resp);
             clear();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
@@ -373,7 +425,7 @@ public class CategoryView extends javax.swing.JFrame {
     private void delete() {
         try {
             String code = txtCode.getText();
-            String resp = CATEGORY_CONTROLLER.delete(code);
+            String resp = MEMBER_CONTROLLER.delete(code);
             JOptionPane.showMessageDialog(this, resp);
             clear();
 
@@ -385,15 +437,16 @@ public class CategoryView extends javax.swing.JFrame {
     private void search() {
         try {
             String code = txtCode.getText();
-            CategoryDto categoryDto = CATEGORY_CONTROLLER.get(code);
+            MemberDto memberDto = MEMBER_CONTROLLER.get(code);
 
-            if (categoryDto != null) {
-                txtCode.setText(categoryDto.getCode());
-                txtName.setText(categoryDto.getCategoryName());
-                txtDescription.setText(categoryDto.getDescription());
+            if (memberDto != null) {
+                txtFirstName.setText(memberDto.getFirstName());
+                txtLastName.setText(memberDto.getLastName());
+                txtPhone.setText(memberDto.getPhone());
+                txtAddress.setText(memberDto.getAddress());
 
             } else {
-                JOptionPane.showMessageDialog(this, "Category Not Found");
+                JOptionPane.showMessageDialog(this, "Member Not Found");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
