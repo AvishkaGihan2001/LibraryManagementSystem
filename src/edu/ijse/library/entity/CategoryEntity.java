@@ -9,7 +9,7 @@ package edu.ijse.library.entity;
  * @author AVISHKA GIHAN
  */
 public class CategoryEntity {
-    
+
     private int categoryID;
     private String code;
     private String categoryName;
@@ -20,6 +20,12 @@ public class CategoryEntity {
 
     public CategoryEntity(int categoryID, String code, String categoryName, String description) {
         this.categoryID = categoryID;
+        this.code = code;
+        this.categoryName = categoryName;
+        this.description = description;
+    }
+
+    public CategoryEntity(String code, String categoryName, String description) {
         this.code = code;
         this.categoryName = categoryName;
         this.description = description;
@@ -85,6 +91,5 @@ public class CategoryEntity {
     public String toString() {
         return "CategoryEntity{" + "categoryID=" + categoryID + ", code=" + code + ", categoryName=" + categoryName + ", description=" + description + '}';
     }
-    
-    
+
 }

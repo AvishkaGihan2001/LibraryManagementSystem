@@ -5,6 +5,7 @@
 package edu.ijse.library.dao.custom;
 
 import edu.ijse.library.dao.SuperDAO;
+import edu.ijse.library.dto.CategoryDto;
 import edu.ijse.library.entity.CategoryEntity;
 import java.util.ArrayList;
 
@@ -18,9 +19,9 @@ public interface CategoryDao extends SuperDAO{
 
     String update(CategoryEntity categoryEntity) throws Exception;
 
-    String delete(String ID) throws Exception;
+    String delete(String code) throws Exception;
 
-    CategoryEntity get(String ID) throws Exception;
+    CategoryDto get(String code) throws Exception;
 
     ArrayList<CategoryEntity> getAll() throws Exception;
 

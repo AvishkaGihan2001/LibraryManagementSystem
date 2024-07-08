@@ -25,6 +25,14 @@ public class CategoryDto {
         this.description = description;
     }
 
+    public CategoryDto(String code, String categoryName, String description) {
+        this.code = code;
+        this.categoryName = categoryName;
+        this.description = description;
+    }
+    
+    
+
     /**
      * @return the categoryID
      */

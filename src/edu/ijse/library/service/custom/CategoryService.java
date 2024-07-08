@@ -18,9 +18,9 @@ public interface CategoryService extends SuperService {
 
     public String update(CategoryDto categoryDto) throws Exception;
 
-    public String delete(String ID) throws Exception;
+    public String delete(String code) throws Exception;
 
-    public CategoryDto get(String ID) throws Exception;
+    public CategoryDto get(String code) throws Exception;
 
     public ArrayList<CategoryDto> getAll() throws Exception;
 
