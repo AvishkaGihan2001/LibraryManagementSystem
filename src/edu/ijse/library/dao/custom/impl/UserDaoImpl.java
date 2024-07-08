@@ -17,12 +17,18 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public String login(UserEntity userEntity) throws Exception {
-        ResultSet resultSet = CrudUtil.executeQuery("Select * from user where userName = ? && password = ? ",
-                userEntity.getUserName(),
-                userEntity.getPassword()
+        ResultSet resultSet = CrudUtil.executeQuery("Select password from user where userName = ? ",
+                userEntity.getUserName()
         );
-        boolean isLogin = resultSet.next();
-        return isLogin ? "Login Successful" : "Login Failed";
+
+        if (resultSet.next()) {
+            String password = resultSet.getString("password");
+            if (password.equals(userEntity.getPassword())) {
+                return "Login Successful";
+            }
+        }
+        return "Login Failed";
+
     }
 
     @Override
@@ -34,7 +40,7 @@ public class UserDaoImpl implements UserDao {
                 userEntity.getLastName(),
                 userEntity.getUserName(),
                 userEntity.getPassword()
-                );
+        );
         return isSaved ? "Success" : "Fail";
     }
 

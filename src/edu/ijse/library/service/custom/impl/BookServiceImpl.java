@@ -5,7 +5,9 @@
 package edu.ijse.library.service.custom.impl;
 
 import edu.ijse.library.dao.DaoFactory;
+import edu.ijse.library.dao.custom.BookDao;
 import edu.ijse.library.dto.BookDto;
+import edu.ijse.library.entity.BookEntity;
 import edu.ijse.library.service.custom.BookService;
 import java.util.ArrayList;
 
@@ -13,33 +15,57 @@ import java.util.ArrayList;
  *
  * @author AVISHKA GIHAN
  */
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
-    private BookDto bookDto = (BookDto) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.BOOK);
-    
+    private BookDao bookDao = (BookDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.BOOK);
+
     @Override
     public String save(BookDto bookDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        BookEntity bookEntity = new BookEntity(
+                bookDto.getCode(),
+                bookDto.getTitle(),
+                bookDto.getAuthor(),
+                bookDto.getPublisher(),
+                bookDto.getPublishedDate(),
+                bookDto.getDescription(),
+                bookDto.getQuantity(),
+                bookDto.getCategoryID()
+        );
+
+        return bookDao.save(bookEntity);
+
     }
 
     @Override
     public String update(BookDto bookDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        BookEntity bookEntity = new BookEntity(
+                bookDto.getCode(),
+                bookDto.getTitle(),
+                bookDto.getAuthor(),
+                bookDto.getPublisher(),
+                bookDto.getPublishedDate(),
+                bookDto.getDescription(),
+                bookDto.getQuantity(),
+                bookDto.getCategoryID()
+        );
+
+        return bookDao.update(bookEntity);
     }
 
     @Override
-    public String delete(String ID) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String delete(String code) throws Exception {
+        return bookDao.delete(code);
     }
 
     @Override
-    public BookDto get(String ID) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public BookDto get(String code) throws Exception {
+        return bookDao.get(code);
+      
     }
 
     @Override
     public ArrayList<BookDto> getAll() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

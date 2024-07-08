@@ -34,6 +34,19 @@ public class BookDto {
         this.categoryID = categoryID;
     }
 
+    public BookDto(String code, String title, String author, String publisher, String publishedDate, String description, int quantity, int categoryID) {
+        this.code = code;
+        this.title = title;
+        this.author = author;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
+        this.description = description;
+        this.quantity = quantity;
+        this.categoryID = categoryID;
+    }
+    
+    
+
     /**
      * @return the bookID
      */

@@ -4,16 +4,23 @@
  */
 package edu.ijse.library.view;
 
+import edu.ijse.library.controller.BookController;
+import edu.ijse.library.dto.BookDto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author AVISHKA GIHAN
  */
-public class CategoryView extends javax.swing.JFrame {
+public class BookView extends javax.swing.JFrame {
 
     /**
      * Creates new form CategoryView
      */
-    public CategoryView() {
+    private final BookController BOOK_CONTROLLER;
+
+    public BookView() {
+        BOOK_CONTROLLER = new BookController();
         initComponents();
     }
 
@@ -355,7 +362,7 @@ public class CategoryView extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        update(); 
+        update();
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -405,20 +412,21 @@ public class CategoryView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CategoryView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BookView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CategoryView().setVisible(true);
+                new BookView().setVisible(true);
             }
         });
     }
@@ -450,27 +458,99 @@ public class CategoryView extends javax.swing.JFrame {
     private javax.swing.JTextField txtcode;
     // End of variables declaration//GEN-END:variables
 
+    private void save() {
+
+        try {
+            BookDto bookDto = new BookDto(
+                    txtcode.getText(),
+                    txtTitle.getText(),
+                    txtAuthor.getText(),
+                    txtPublisher.getText(),
+                    txtPublishedDate.getText(),
+                    txtDescription.getText(),
+                    Integer.parseInt(txtQty.getText()),
+                    Integer.parseInt(txtCategoryID.getText())
+            );
+
+            String resp = BOOK_CONTROLLER.save(bookDto);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
     private void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        txtcode.setText("");
+        txtTitle.setText("");
+        txtAuthor.setText("");
+        txtPublisher.setText("");
+        txtPublishedDate.setText("");
+        txtQty.setText("");
+        txtDescription.setText("");
+        txtCategoryID.setText("");
     }
 
     private void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            BookDto bookDto = new BookDto(
+                    txtcode.getText(),
+                    txtTitle.getText(),
+                    txtAuthor.getText(),
+                    txtPublisher.getText(),
+                    txtPublishedDate.getText(),
+                    txtDescription.getText(),
+                    Integer.parseInt(txtQty.getText()),
+                    Integer.parseInt(txtCategoryID.getText())
+            );
+
+            String resp = BOOK_CONTROLLER.update(bookDto);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+
     }
 
     private void delete() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String code = txtcode.getText();
+            String resp = BOOK_CONTROLLER.delete(code);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
     private void search() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String code = txtcode.getText();
+            BookDto bookDto = BOOK_CONTROLLER.get(code);
+
+            if (bookDto != null) {
+                txtTitle.setText(bookDto.getTitle());
+                txtAuthor.setText(bookDto.getAuthor());
+                txtPublisher.setText(bookDto.getPublisher());
+                txtPublishedDate.setText(bookDto.getPublishedDate());
+                txtDescription.setText(bookDto.getDescription());
+                txtQty.setText(Integer.toString(bookDto.getQuantity()));
+                txtCategoryID.setText(Integer.toString(bookDto.getCategoryID()));
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Book Not Found");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
     private void selectCustomer() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void save() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

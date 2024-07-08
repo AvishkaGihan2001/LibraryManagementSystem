@@ -5,6 +5,7 @@
 package edu.ijse.library.dao.custom;
 
 import edu.ijse.library.dao.SuperDAO;
+import edu.ijse.library.dto.BookDto;
 import edu.ijse.library.entity.BookEntity;
 import java.util.ArrayList;
 
@@ -18,9 +19,9 @@ public interface BookDao extends SuperDAO {
 
     String update(BookEntity bookEntity) throws Exception;
 
-    String delete(String ID) throws Exception;
+    String delete(String code) throws Exception;
 
-    BookEntity get(String ID) throws Exception;
+    BookDto get(String code) throws Exception;
 
     ArrayList<BookEntity> getAll() throws Exception;
 

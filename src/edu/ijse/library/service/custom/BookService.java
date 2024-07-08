@@ -18,9 +18,9 @@ public interface BookService extends SuperService{
 
     public String update(BookDto bookDto) throws Exception;
 
-    public String delete(String ID) throws Exception;
+    public String delete(String code) throws Exception;
 
-    public BookDto get(String ID) throws Exception;
+    public BookDto get(String code) throws Exception;
 
     public ArrayList<BookDto> getAll() throws Exception;
 
