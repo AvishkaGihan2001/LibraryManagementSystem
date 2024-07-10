@@ -11,7 +11,6 @@ package edu.ijse.library.entity;
 public class FineEntity {
 
     private int fineID;
-    private String code;
     private int transactionID;
     private double amount;
     private boolean paid;
@@ -19,16 +18,14 @@ public class FineEntity {
     public FineEntity() {
     }
 
-    public FineEntity(int fineID, String code, int transactionID, double amount, boolean paid) {
+    public FineEntity(int fineID, int transactionID, double amount, boolean paid) {
         this.fineID = fineID;
-        this.code = code;
         this.transactionID = transactionID;
         this.amount = amount;
         this.paid = paid;
     }
 
-    public FineEntity(String code, int transactionID, double amount, boolean paid) {
-        this.code = code;
+    public FineEntity(int transactionID, double amount, boolean paid) {
         this.transactionID = transactionID;
         this.amount = amount;
         this.paid = paid;
@@ -46,20 +43,6 @@ public class FineEntity {
      */
     public void setFineID(int fineID) {
         this.fineID = fineID;
-    }
-
-    /**
-     * @return the code
-     */
-    public String getCode() {
-        return code;
-    }
-
-    /**
-     * @param code the code to set
-     */
-    public void setCode(String code) {
-        this.code = code;
     }
 
     /**
@@ -106,8 +89,10 @@ public class FineEntity {
 
     @Override
     public String toString() {
-        return "FineEntity{" + "fineID=" + fineID + ", code=" + code + ", transactionID=" + transactionID + ", amount=" + amount + ", paid=" + paid + '}';
+        return "FineEntity{" + "fineID=" + fineID + ", transactionID=" + transactionID + ", amount=" + amount + ", paid=" + paid + '}';
     }
-
     
+    
+
+   
 }
