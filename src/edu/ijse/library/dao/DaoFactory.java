@@ -4,9 +4,11 @@
  */
 package edu.ijse.library.dao;
 
+import edu.ijse.library.dao.custom.TransactionDao;
 import edu.ijse.library.dao.custom.impl.BookDaoImpl;
 import edu.ijse.library.dao.custom.impl.CategoryDaoImpl;
 import edu.ijse.library.dao.custom.impl.MemberDaoImpl;
+import edu.ijse.library.dao.custom.impl.TransactionDaoImpl;
 import edu.ijse.library.dao.custom.impl.UserDaoImpl;
 
 /**
@@ -37,6 +39,8 @@ public class DaoFactory {
                 return new MemberDaoImpl();
             case USER:
                 return new UserDaoImpl();
+            case TRANSACTION:
+                return new TransactionDaoImpl();
 
             default:
                 return null;
@@ -45,7 +49,7 @@ public class DaoFactory {
     }
 
     public enum DaoTypes {
-        CATEGORY, BOOK, MEMBER , USER
+        CATEGORY, BOOK, MEMBER , USER, TRANSACTION
     }
 
 }

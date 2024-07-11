@@ -4,6 +4,14 @@
  */
 package edu.ijse.library.view;
 
+import edu.ijse.library.controller.BookController;
+import edu.ijse.library.controller.MemberController;
+import edu.ijse.library.controller.TransactionController;
+import edu.ijse.library.dto.BookDto;
+import edu.ijse.library.dto.MemberDto;
+import edu.ijse.library.dto.TransactionDto;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author AVISHKA GIHAN
@@ -13,7 +21,14 @@ public class BookBorrowView extends javax.swing.JFrame {
     /**
      * Creates new form BookBorrowView
      */
+    private final BookController BOOK_CONTROLLER;
+    private final MemberController MEMBER_CONTROLLER;
+    private final TransactionController TRANSACTION_CONTROLLER;
+
     public BookBorrowView() {
+        BOOK_CONTROLLER = new BookController();
+        MEMBER_CONTROLLER = new MemberController();
+        TRANSACTION_CONTROLLER = new TransactionController();
         initComponents();
     }
 
@@ -256,7 +271,7 @@ public class BookBorrowView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBookCodeActionPerformed
 
     private void btnMemberSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemberSearchActionPerformed
-        
+        searchMember();
     }//GEN-LAST:event_btnMemberSearchActionPerformed
 
     private void TransactionTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TransactionTableAncestorAdded
@@ -264,12 +279,13 @@ public class BookBorrowView extends javax.swing.JFrame {
     }//GEN-LAST:event_TransactionTableAncestorAdded
 
     private void TransactionTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TransactionTableMouseClicked
-        
+
     }//GEN-LAST:event_TransactionTableMouseClicked
 
     private void btnPlaceTransactionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceTransactionActionPerformed
         // TODO add your handling code here:
-        
+        placeTransaction();
+
     }//GEN-LAST:event_btnPlaceTransactionActionPerformed
 
     private void txtMemberCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemberCodeActionPerformed
@@ -282,6 +298,7 @@ public class BookBorrowView extends javax.swing.JFrame {
 
     private void btnBookSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookSearchActionPerformed
         // TODO add your handling code here:
+        searchBook();
     }//GEN-LAST:event_btnBookSearchActionPerformed
 
     private void txtDueDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDueDateActionPerformed
@@ -343,4 +360,66 @@ public class BookBorrowView extends javax.swing.JFrame {
     private javax.swing.JTextField txtMemberCode;
     private javax.swing.JTextField txtTransactionCode;
     // End of variables declaration//GEN-END:variables
+
+    private void searchBook() {
+        try {
+            String Code = txtBookCode.getText();
+            BookDto bookDto = BOOK_CONTROLLER.get(Code);
+
+            if (bookDto != null) {
+                lblBookDetails.setText(bookDto.getTitle() + " | " + bookDto.getDescription());
+            } else {
+                lblBookDetails.setText("Item Not Found");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    private void searchMember() {
+        try {
+            String Code = txtMemberCode.getText();
+            MemberDto memberDto = MEMBER_CONTROLLER.get(Code);
+
+            if (memberDto != null) {
+                lblMemberDetails.setText(memberDto.getFirstName() + " | " + memberDto.getLastName() + " | " + memberDto.getAddress());
+            } else {
+                lblMemberDetails.setText("Item Not Found");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    private void placeTransaction() {
+        try {
+            TransactionDto transactionDto = new TransactionDto(
+                    txtTransactionCode.getText(),
+                    txtBookCode.getText(),
+                    txtMemberCode.getText(),
+                    txtBorrowDate.getText(),
+                    txtDueDate.getText()
+            );
+
+            String resp = TRANSACTION_CONTROLLER.save(transactionDto);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    private void clear() {
+        txtTransactionCode.setText("");
+        txtBookCode.setText("");
+        txtMemberCode.setText("");
+        txtBorrowDate.setText("");
+        txtDueDate.setText("");
+        lblBookDetails.setText("");
+        lblMemberDetails.setText("");
+    }
 }

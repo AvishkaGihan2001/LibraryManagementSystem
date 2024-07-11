@@ -9,10 +9,11 @@ package edu.ijse.library.dto;
  * @author AVISHKA GIHAN
  */
 public class TransactionDto {
+
     private int transactionID;
-    private String code;
-    private int bookID;
-    private int memberID;
+    private String transactionCode;
+    private String bookCode;
+    private String memberCode;
     private String borrowDate;
     private String dueDate;
     private String returnDate;
@@ -21,25 +22,33 @@ public class TransactionDto {
     public TransactionDto() {
     }
 
-    public TransactionDto(int transactionID, String code, int bookID, int memberID, String borrowDate, String dueDate, String returnDate, double fine) {
+    public TransactionDto(int transactionID, String transactionCode, String bookCode, String memberCode, String borrowDate, String dueDate, String returnDate, double fine) {
         this.transactionID = transactionID;
-        this.code = code;
-        this.bookID = bookID;
-        this.memberID = memberID;
+        this.transactionCode = transactionCode;
+        this.bookCode = bookCode;
+        this.memberCode = memberCode;
         this.borrowDate = borrowDate;
         this.dueDate = dueDate;
         this.returnDate = returnDate;
         this.fine = fine;
     }
 
-    public TransactionDto(String code, int bookID, int memberID, String borrowDate, String dueDate, String returnDate, double fine) {
-        this.code = code;
-        this.bookID = bookID;
-        this.memberID = memberID;
+    public TransactionDto(String transactionCode, String bookCode, String memberCode, String borrowDate, String dueDate, String returnDate, double fine) {
+        this.transactionCode = transactionCode;
+        this.bookCode = bookCode;
+        this.memberCode = memberCode;
         this.borrowDate = borrowDate;
         this.dueDate = dueDate;
         this.returnDate = returnDate;
         this.fine = fine;
+    }
+
+    public TransactionDto(String transactionCode, String bookCode, String memberCode, String borrowDate, String dueDate) {
+        this.transactionCode = transactionCode;
+        this.bookCode = bookCode;
+        this.memberCode = memberCode;
+        this.borrowDate = borrowDate;
+        this.dueDate = dueDate;
     }
 
     /**
@@ -57,45 +66,45 @@ public class TransactionDto {
     }
 
     /**
-     * @return the code
+     * @return the transactionCode
      */
-    public String getCode() {
-        return code;
+    public String getTransactionCode() {
+        return transactionCode;
     }
 
     /**
-     * @param code the code to set
+     * @param transactionCode the transactionCode to set
      */
-    public void setCode(String code) {
-        this.code = code;
+    public void setTransactionCode(String transactionCode) {
+        this.transactionCode = transactionCode;
     }
 
     /**
-     * @return the bookID
+     * @return the bookCode
      */
-    public int getBookID() {
-        return bookID;
+    public String getBookCode() {
+        return bookCode;
     }
 
     /**
-     * @param bookID the bookID to set
+     * @param bookCode the bookCode to set
      */
-    public void setBookID(int bookID) {
-        this.bookID = bookID;
+    public void setBookCode(String bookCode) {
+        this.bookCode = bookCode;
     }
 
     /**
-     * @return the memberID
+     * @return the memberCode
      */
-    public int getMemberID() {
-        return memberID;
+    public String getMemberCode() {
+        return memberCode;
     }
 
     /**
-     * @param memberID the memberID to set
+     * @param memberCode the memberCode to set
      */
-    public void setMemberID(int memberID) {
-        this.memberID = memberID;
+    public void setMemberCode(String memberCode) {
+        this.memberCode = memberCode;
     }
 
     /**
@@ -156,9 +165,7 @@ public class TransactionDto {
 
     @Override
     public String toString() {
-        return "TransactionDto{" + "transactionID=" + transactionID + ", code=" + code + ", bookID=" + bookID + ", memberID=" + memberID + ", borrowDate=" + borrowDate + ", dueDate=" + dueDate + ", returnDate=" + returnDate + ", fine=" + fine + '}';
+        return "TransactionDto{" + "transactionID=" + transactionID + ", transactionCode=" + transactionCode + ", bookCode=" + bookCode + ", memberCode=" + memberCode + ", borrowDate=" + borrowDate + ", dueDate=" + dueDate + ", returnDate=" + returnDate + ", fine=" + fine + '}';
     }
-    
-    
-    
+
 }

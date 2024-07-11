@@ -4,6 +4,7 @@
  */
 package edu.ijse.library;
 
+import edu.ijse.library.view.BookBorrowView;
 import edu.ijse.library.view.BookView;
 import edu.ijse.library.view.CategoryView;
 import edu.ijse.library.view.LoginView;
@@ -23,9 +24,10 @@ public class Main {
         // TODO code application logic here
 //        new BookView().setVisible(true);
 //        new CategoryView().setVisible(true);
-        new MemberView().setVisible(true);
+//        new MemberView().setVisible(true);
 //       new LoginView().setVisible(true);
 //        new RegisterView().setVisible(true);
+        new BookBorrowView().setVisible(true);
     }
 
 }
