@@ -20,4 +20,13 @@ public class TransactionController {
         return transactionService.save(transactionDto);
     }
     
+    public TransactionDto get(String code) throws Exception {
+        return transactionService.get(code);
+    }
+    
+    public String completeTransaction(TransactionDto transactionDto) throws Exception {
+        return transactionService.completeTransaction(transactionDto);
+    }
+    
+    
 }

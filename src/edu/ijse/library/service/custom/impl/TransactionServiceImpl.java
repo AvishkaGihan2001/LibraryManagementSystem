@@ -33,4 +33,20 @@ public class TransactionServiceImpl implements TransactionService {
 
     }
 
+    @Override
+    public TransactionDto get(String code) throws Exception {
+        return transactionDao.get(code);
+    }
+
+    @Override
+    public String completeTransaction(TransactionDto transactionDto) throws Exception {
+        TransactionEntity transactionEntity = new TransactionEntity(
+                transactionDto.getTransactionCode(),
+                transactionDto.getReturnDate(),
+                transactionDto.getFine()
+        );
+        
+        return transactionDao.completeTransaction(transactionEntity);
+    }
+
 }

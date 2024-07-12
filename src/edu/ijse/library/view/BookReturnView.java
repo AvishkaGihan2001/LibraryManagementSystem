@@ -4,6 +4,14 @@
  */
 package edu.ijse.library.view;
 
+import edu.ijse.library.controller.TransactionController;
+import edu.ijse.library.dto.TransactionDto;
+import javax.swing.JOptionPane;
+import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 /**
  *
  * @author AVISHKA GIHAN
@@ -13,7 +21,10 @@ public class BookReturnView extends javax.swing.JFrame {
     /**
      * Creates new form BookReturnView
      */
+    private final TransactionController TRANSACTION_CONTROLLER;
+
     public BookReturnView() {
+        TRANSACTION_CONTROLLER = new TransactionController();
         initComponents();
     }
 
@@ -35,8 +46,8 @@ public class BookReturnView extends javax.swing.JFrame {
         btnTransactionSearch = new javax.swing.JButton();
         btnComplete = new javax.swing.JButton();
         lblPackSize3 = new javax.swing.JLabel();
-        txtDueDate = new javax.swing.JTextField();
         lblHeader = new javax.swing.JLabel();
+        lblDueDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,7 +81,6 @@ public class BookReturnView extends javax.swing.JFrame {
 
         btnComplete.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
         btnComplete.setText("Complete Transaction");
-        btnComplete.setActionCommand("Complete Transaction");
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteActionPerformed(evt);
@@ -80,17 +90,12 @@ public class BookReturnView extends javax.swing.JFrame {
         lblPackSize3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblPackSize3.setText("Due Date   :");
 
-        txtDueDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtDueDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDueDateActionPerformed(evt);
-            }
-        });
-
         lblHeader.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Book Return Form");
         lblHeader.setToolTipText("");
+
+        lblDueDate.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,22 +113,23 @@ public class BookReturnView extends javax.swing.JFrame {
                             .addComponent(lblBookDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblMemberDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblPackSize)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
+                        .addComponent(btnTransactionSearch)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(lblPackSize3)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(lblPackSize)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(60, 60, 60)
-                                .addComponent(btnTransactionSearch))
+                                .addComponent(btnComplete))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
-                                .addComponent(lblPackSize3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnComplete)
-                                    .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(6, 6, 6)
+                                .addComponent(lblDueDate, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -148,12 +154,12 @@ public class BookReturnView extends javax.swing.JFrame {
                     .addComponent(lblDescription)
                     .addComponent(lblMemberDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPackSize3))
-                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPackSize3)
+                    .addComponent(lblDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
                 .addComponent(btnComplete)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
@@ -170,16 +176,14 @@ public class BookReturnView extends javax.swing.JFrame {
 
     private void btnTransactionSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransactionSearchActionPerformed
         // TODO add your handling code here:
+        search();
     }//GEN-LAST:event_btnTransactionSearchActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
+        completeTransaction();
 
     }//GEN-LAST:event_btnCompleteActionPerformed
-
-    private void txtDueDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDueDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDueDateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,12 +225,64 @@ public class BookReturnView extends javax.swing.JFrame {
     private javax.swing.JButton btnTransactionSearch;
     private javax.swing.JLabel lblBookDetails;
     private javax.swing.JLabel lblDescription;
+    private javax.swing.JLabel lblDueDate;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblItemCode;
     private javax.swing.JLabel lblMemberDetails;
     private javax.swing.JLabel lblPackSize;
     private javax.swing.JLabel lblPackSize3;
-    private javax.swing.JTextField txtDueDate;
     private javax.swing.JTextField txtTransactionCode;
     // End of variables declaration//GEN-END:variables
+
+    private void search() {
+        try {
+            String code = txtTransactionCode.getText();
+            TransactionDto transactionDto = TRANSACTION_CONTROLLER.get(code);
+
+            if (transactionDto != null) {
+                lblBookDetails.setText(transactionDto.getBookCode());
+                lblMemberDetails.setText(transactionDto.getMemberCode());
+                lblDueDate.setText(transactionDto.getDueDate());
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Not Found");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+
+    private void completeTransaction() {
+        try {
+            String returnDateString = LocalDate.now().toString();
+            String dueDateString = lblDueDate.getText();  // Assuming lblDueDate is a JLabel or similar component
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+            LocalDate returnDate = LocalDate.parse(returnDateString, formatter);
+            LocalDate dueDate = LocalDate.parse(dueDateString, formatter);
+
+            long daysBetween = ChronoUnit.DAYS.between(dueDate, returnDate);
+
+            double fine = daysBetween * 20;
+
+            TransactionDto transactionDto = new TransactionDto(
+                    txtTransactionCode.getText(),
+                    returnDateString,
+                    fine
+            );
+            
+            String resp = TRANSACTION_CONTROLLER.completeTransaction(transactionDto);
+            JOptionPane.showMessageDialog(this, resp);
+            clear();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }
+    
+    private void clear(){
+        txtTransactionCode.setText("");
+    }
+
 }

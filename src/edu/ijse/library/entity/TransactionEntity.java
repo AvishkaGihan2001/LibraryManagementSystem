@@ -51,6 +51,12 @@ public class TransactionEntity {
         this.dueDate = dueDate;
     }
 
+    public TransactionEntity(String transactionCode ,String returnDate, double fine) {
+        this.transactionCode = transactionCode;
+        this.returnDate = returnDate;
+        this.fine = fine;
+    }
+
     /**
      * @return the transactionID
      */

@@ -51,6 +51,12 @@ public class TransactionDto {
         this.dueDate = dueDate;
     }
 
+    public TransactionDto(String transactionCode, String returnDate, double fine) {
+        this.transactionCode = transactionCode;
+        this.returnDate = returnDate;
+        this.fine = fine;
+    }
+
     /**
      * @return the transactionID
      */

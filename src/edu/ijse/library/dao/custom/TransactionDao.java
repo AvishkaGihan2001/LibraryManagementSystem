@@ -5,14 +5,19 @@
 package edu.ijse.library.dao.custom;
 
 import edu.ijse.library.dao.SuperDAO;
+import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.entity.TransactionEntity;
 
 /**
  *
  * @author AVISHKA GIHAN
  */
-public interface TransactionDao extends SuperDAO{
-    
+public interface TransactionDao extends SuperDAO {
+
     String save(TransactionEntity transactionEntity) throws Exception;
+
+    TransactionDto get(String code) throws Exception;
     
+    String completeTransaction(TransactionEntity transactionEntity) throws Exception;
+
 }

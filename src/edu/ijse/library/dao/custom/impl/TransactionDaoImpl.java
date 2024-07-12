@@ -6,7 +6,9 @@ package edu.ijse.library.dao.custom.impl;
 
 import edu.ijse.library.dao.CrudUtil;
 import edu.ijse.library.dao.custom.TransactionDao;
+import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.entity.TransactionEntity;
+import java.sql.ResultSet;
 
 /**
  *
@@ -26,6 +28,35 @@ public class TransactionDaoImpl implements TransactionDao {
                 transactionEntity.getDueDate(),
                 transactionEntity.getBookCode(),
                 transactionEntity.getMemberCode()
+        );
+        return isSaved ? "Success" : "Fail";
+    }
+
+    @Override
+    public TransactionDto get(String code) throws Exception {
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM transaction WHERE code = ?", code);
+        if (rst.next()) {
+            TransactionDto transactionDto = new TransactionDto(
+                    rst.getString("code"),
+                    rst.getString("bookID"),
+                    rst.getString("memberID"),
+                    rst.getString("borrowDate"),
+                    rst.getString("dueDate"),
+                    rst.getString("returnDate"),
+                    rst.getDouble("fine")
+            );
+            return transactionDto;
+        }
+        return null;
+    }
+
+    @Override
+    public String completeTransaction(TransactionEntity transactionEntity) throws Exception {
+        boolean isSaved = CrudUtil.executeUpdate(
+                "UPDATE transaction SET returnDate = ?, fine = ? WHERE code = ?",
+                transactionEntity.getReturnDate(),
+                transactionEntity.getFine(),
+                transactionEntity.getTransactionCode()
         );
         return isSaved ? "Success" : "Fail";
     }

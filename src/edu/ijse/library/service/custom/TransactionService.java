@@ -15,4 +15,8 @@ public interface TransactionService extends SuperService{
     
     public String save(TransactionDto transactionDto) throws Exception;
     
+    public TransactionDto get(String code) throws Exception;
+    
+    public String completeTransaction(TransactionDto transactionDto) throws Exception;
+    
 }
