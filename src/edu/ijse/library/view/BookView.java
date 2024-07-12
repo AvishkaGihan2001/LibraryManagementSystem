@@ -6,7 +6,9 @@ package edu.ijse.library.view;
 
 import edu.ijse.library.controller.BookController;
 import edu.ijse.library.dto.BookDto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +24,7 @@ public class BookView extends javax.swing.JFrame {
     public BookView() {
         BOOK_CONTROLLER = new BookController();
         initComponents();
+        loadTable();
     }
 
     /**
@@ -47,7 +50,7 @@ public class BookView extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        CustomerTable = new javax.swing.JTable();
+        BookTable = new javax.swing.JTable();
         btnInsert = new javax.swing.JButton();
         lblHeader = new javax.swing.JLabel();
         lblItemCode = new javax.swing.JLabel();
@@ -143,7 +146,7 @@ public class BookView extends javax.swing.JFrame {
             }
         });
 
-        CustomerTable.setModel(new javax.swing.table.DefaultTableModel(
+        BookTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -154,22 +157,22 @@ public class BookView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        CustomerTable.setDragEnabled(true);
-        CustomerTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+        BookTable.setDragEnabled(true);
+        BookTable.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                CustomerTableAncestorAdded(evt);
+                BookTableAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        CustomerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        BookTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CustomerTableMouseClicked(evt);
+                BookTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(CustomerTable);
+        jScrollPane2.setViewportView(BookTable);
 
         btnInsert.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
         btnInsert.setText("Insert");
@@ -374,13 +377,13 @@ public class BookView extends javax.swing.JFrame {
         search();
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void CustomerTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CustomerTableAncestorAdded
+    private void BookTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_BookTableAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_CustomerTableAncestorAdded
+    }//GEN-LAST:event_BookTableAncestorAdded
 
-    private void CustomerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustomerTableMouseClicked
-        selectCustomer();
-    }//GEN-LAST:event_CustomerTableMouseClicked
+    private void BookTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BookTableMouseClicked
+        selectBook();
+    }//GEN-LAST:event_BookTableMouseClicked
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
@@ -432,7 +435,7 @@ public class BookView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable CustomerTable;
+    private javax.swing.JTable BookTable;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
@@ -549,8 +552,38 @@ public class BookView extends javax.swing.JFrame {
         }
     }
 
-    private void selectCustomer() {
+    private void selectBook() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void loadTable() {
+        try {
+            String[] columns = {"Code", "Title", "Author", "Publisher", "Published Date", "Description", "Qauntity"};
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+
+            };
+            BookTable.setModel(dtm);
+
+            ArrayList<BookDto> bookDtos = BOOK_CONTROLLER.getAll();
+            for (BookDto bookDto : bookDtos) {
+                Object[] rowData = {
+                    bookDto.getCode(),
+                    bookDto.getTitle(),
+                    bookDto.getAuthor(),
+                    bookDto.getPublisher(),
+                    bookDto.getPublishedDate(),
+                    bookDto.getDescription(),
+                    bookDto.getQuantity()
+                };
+                dtm.addRow(rowData);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
 }

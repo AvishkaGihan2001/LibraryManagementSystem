@@ -10,7 +10,9 @@ import edu.ijse.library.controller.TransactionController;
 import edu.ijse.library.dto.BookDto;
 import edu.ijse.library.dto.MemberDto;
 import edu.ijse.library.dto.TransactionDto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +32,7 @@ public class BookBorrowView extends javax.swing.JFrame {
         MEMBER_CONTROLLER = new MemberController();
         TRANSACTION_CONTROLLER = new TransactionController();
         initComponents();
+        loadTable();
     }
 
     /**
@@ -421,5 +424,42 @@ public class BookBorrowView extends javax.swing.JFrame {
         txtDueDate.setText("");
         lblBookDetails.setText("");
         lblMemberDetails.setText("");
+    }
+
+    private void loadTable() {
+        try {
+            String[] columns = {"Code", "Book", "Member", "Borrow Date", "Due Date", "Status"};
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+
+            };
+            TransactionTable.setModel(dtm);
+
+            String status = "";
+
+            ArrayList<TransactionDto> transactionDtos = TRANSACTION_CONTROLLER.getAll();
+            for (TransactionDto transactionDto : transactionDtos) {
+                
+                if (transactionDto.getFine() > 0) {
+                    status = "Not Paid";
+                }else{
+                    status = "Completed";
+                }
+                Object[] rowData = {
+                    transactionDto.getTransactionCode(),
+                    transactionDto.getBookCode(),
+                    transactionDto.getMemberCode(),
+                    transactionDto.getBorrowDate(),
+                    transactionDto.getDueDate(),
+                    status
+                };
+                dtm.addRow(rowData);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 }

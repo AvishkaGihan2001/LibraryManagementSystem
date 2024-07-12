@@ -60,7 +60,16 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public ArrayList<CategoryEntity> getAll() throws Exception {
-        return null;
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM category");
+        ArrayList<CategoryEntity> categoryList = new ArrayList<>();
+        while (resultSet.next()) {
+            categoryList.add(new CategoryEntity(
+                    resultSet.getString("code"),
+                    resultSet.getString("categoryName"),
+                    resultSet.getString("description")
+            ));
+        }
+        return categoryList;
     }
 
 }

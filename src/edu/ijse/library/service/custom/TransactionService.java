@@ -6,6 +6,7 @@ package edu.ijse.library.service.custom;
 
 import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.service.SuperService;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,5 +19,7 @@ public interface TransactionService extends SuperService{
     public TransactionDto get(String code) throws Exception;
     
     public String completeTransaction(TransactionDto transactionDto) throws Exception;
+    
+    public ArrayList<TransactionDto> getAll() throws Exception;
     
 }

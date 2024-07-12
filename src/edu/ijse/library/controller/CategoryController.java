@@ -7,6 +7,7 @@ package edu.ijse.library.controller;
 import edu.ijse.library.dto.CategoryDto;
 import edu.ijse.library.service.ServiceFactory;
 import edu.ijse.library.service.custom.CategoryService;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,6 +31,10 @@ public class CategoryController {
 
     public CategoryDto get(String code) throws Exception {
         return categoryService.get(code);
+    }
+    
+    public ArrayList<CategoryDto> getAll() throws Exception {
+        return categoryService.getAll();
     }
 
 }

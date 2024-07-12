@@ -6,7 +6,9 @@ package edu.ijse.library.view;
 
 import edu.ijse.library.controller.CategoryController;
 import edu.ijse.library.dto.CategoryDto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +24,7 @@ public class CategoryView extends javax.swing.JFrame {
     public CategoryView() {
         CATEGORY_CONTROLLER = new CategoryController();
         initComponents();
+        loadTable();
     }
 
     /**
@@ -40,7 +43,7 @@ public class CategoryView extends javax.swing.JFrame {
         btnSearch = new javax.swing.JButton();
         txtDescription = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        CustomerTable = new javax.swing.JTable();
+        CategoryTable = new javax.swing.JTable();
         btnInsert = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
         lblHeader = new javax.swing.JLabel();
@@ -91,7 +94,7 @@ public class CategoryView extends javax.swing.JFrame {
             }
         });
 
-        CustomerTable.setModel(new javax.swing.table.DefaultTableModel(
+        CategoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -102,22 +105,22 @@ public class CategoryView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        CustomerTable.setDragEnabled(true);
-        CustomerTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+        CategoryTable.setDragEnabled(true);
+        CategoryTable.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                CustomerTableAncestorAdded(evt);
+                CategoryTableAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        CustomerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        CategoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CustomerTableMouseClicked(evt);
+                CategoryTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(CustomerTable);
+        jScrollPane2.setViewportView(CategoryTable);
 
         btnInsert.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
         btnInsert.setText("Insert");
@@ -258,13 +261,13 @@ public class CategoryView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescriptionActionPerformed
 
-    private void CustomerTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CustomerTableAncestorAdded
+    private void CategoryTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CategoryTableAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_CustomerTableAncestorAdded
+    }//GEN-LAST:event_CategoryTableAncestorAdded
 
-    private void CustomerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustomerTableMouseClicked
-        selectCustomer();
-    }//GEN-LAST:event_CustomerTableMouseClicked
+    private void CategoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CategoryTableMouseClicked
+        selectCategory();
+    }//GEN-LAST:event_CategoryTableMouseClicked
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
@@ -317,7 +320,7 @@ public class CategoryView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable CustomerTable;
+    private javax.swing.JTable CategoryTable;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
@@ -400,8 +403,34 @@ public class CategoryView extends javax.swing.JFrame {
         }
     }
 
-    private void selectCustomer() {
+    private void selectCategory() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void loadTable() {
+        try {
+            String[] columns = {"Code", "Name", "Description"};
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+
+            };
+            CategoryTable.setModel(dtm);
+
+            ArrayList<CategoryDto> categoryDtos = CATEGORY_CONTROLLER.getAll();
+            for (CategoryDto categoryDto : categoryDtos) {
+                Object[] rowData = {
+                    categoryDto.getCode(),
+                    categoryDto.getCategoryName(),
+                    categoryDto.getDescription()
+                };
+                dtm.addRow(rowData);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
 }

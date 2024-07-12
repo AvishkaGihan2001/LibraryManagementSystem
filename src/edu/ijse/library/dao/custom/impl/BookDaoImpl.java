@@ -51,31 +51,45 @@ public class BookDaoImpl implements BookDao {
     @Override
     public String delete(String code) throws Exception {
         boolean isDeleted = CrudUtil.executeUpdate("DELETE FROM book WHERE code = ?", code);
-        return isDeleted ?  "Success" : "Fail";
+        return isDeleted ? "Success" : "Fail";
     }
 
     @Override
     public BookDto get(String code) throws Exception {
-         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM book WHERE code = ?", code);
-          if(rst.next()){
-           BookDto bookDto = new BookDto(
-                   rst.getString("code"),
-                   rst.getString("title"),
-                   rst.getString("author"),
-                   rst.getString("publisher"),
-                   rst.getString("publishedDate"),
-                   rst.getString("description"),
-                   rst.getInt("quantity"),
-                   rst.getInt("categoryID")
-           );
-           return bookDto;
-          }
-          return null;
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM book WHERE code = ?", code);
+        if (rst.next()) {
+            BookDto bookDto = new BookDto(
+                    rst.getString("code"),
+                    rst.getString("title"),
+                    rst.getString("author"),
+                    rst.getString("publisher"),
+                    rst.getString("publishedDate"),
+                    rst.getString("description"),
+                    rst.getInt("quantity"),
+                    rst.getInt("categoryID")
+            );
+            return bookDto;
+        }
+        return null;
     }
 
     @Override
     public ArrayList<BookEntity> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM book");
+        ArrayList<BookEntity> bookList = new ArrayList<>();
+        while (resultSet.next()) {
+            bookList.add(new BookEntity(
+                    resultSet.getString("code"),
+                    resultSet.getString("title"),
+                    resultSet.getString("author"),
+                    resultSet.getString("publisher"),
+                    resultSet.getString("publishedDate"),
+                    resultSet.getString("description"),
+                    resultSet.getInt("quantity"),
+                    resultSet.getInt("categoryID")
+            ));
+        }
+        return bookList;
     }
 
 }

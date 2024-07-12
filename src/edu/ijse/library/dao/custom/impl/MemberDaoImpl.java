@@ -66,7 +66,18 @@ public class MemberDaoImpl implements MemberDao {
 
     @Override
     public ArrayList<MemberEntity> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM member");
+        ArrayList<MemberEntity> memberList = new ArrayList<>();
+        while (resultSet.next()) {
+            memberList.add(new MemberEntity(
+                    resultSet.getString("code"),
+                    resultSet.getString("firstName"),
+                    resultSet.getString("lastName"),
+                    resultSet.getString("phone"),
+                    resultSet.getString("address")
+            ));
+        }
+        return memberList;
     }
 
 }

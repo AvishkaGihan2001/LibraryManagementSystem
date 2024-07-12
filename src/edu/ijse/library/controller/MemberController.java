@@ -7,6 +7,7 @@ package edu.ijse.library.controller;
 import edu.ijse.library.dto.MemberDto;
 import edu.ijse.library.service.ServiceFactory;
 import edu.ijse.library.service.custom.MemberService;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,5 +31,9 @@ public class MemberController {
 
     public MemberDto get(String code) throws Exception {
         return memberService.get(code);
+    }
+
+    public ArrayList<MemberDto> getAll() throws Exception {
+        return memberService.getAll();
     }
 }

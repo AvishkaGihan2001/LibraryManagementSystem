@@ -56,7 +56,22 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public ArrayList<MemberDto> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       ArrayList<MemberEntity> memberEntitys = memberDao.getAll();
+
+        // Convert each ItemEntity to ItemDto
+        ArrayList<MemberDto> dtoList = new ArrayList<>();
+        for (MemberEntity memberEntity : memberEntitys) {
+            MemberDto memberDto = new MemberDto(
+                    memberEntity.getCode(),
+                    memberEntity.getFirstName(),
+                    memberEntity.getLastName(),
+                    memberEntity.getPhone(),
+                    memberEntity.getAddress()
+            );
+            dtoList.add(memberDto);
+        }
+
+        return dtoList;
     }
 
 }

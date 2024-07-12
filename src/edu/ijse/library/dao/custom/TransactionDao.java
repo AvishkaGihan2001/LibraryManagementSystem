@@ -7,6 +7,7 @@ package edu.ijse.library.dao.custom;
 import edu.ijse.library.dao.SuperDAO;
 import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.entity.TransactionEntity;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,5 +20,7 @@ public interface TransactionDao extends SuperDAO {
     TransactionDto get(String code) throws Exception;
     
     String completeTransaction(TransactionEntity transactionEntity) throws Exception;
+    
+    ArrayList<TransactionEntity> getAll() throws Exception;
 
 }

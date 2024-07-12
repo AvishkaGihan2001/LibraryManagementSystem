@@ -9,6 +9,7 @@ import edu.ijse.library.dao.custom.TransactionDao;
 import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.entity.TransactionEntity;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -48,6 +49,24 @@ public class TransactionDaoImpl implements TransactionDao {
             return transactionDto;
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<TransactionEntity> getAll() throws Exception {
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM transaction");
+        ArrayList<TransactionEntity> transactionList = new ArrayList<>();
+        while (resultSet.next()) {
+            transactionList.add(new TransactionEntity(
+                    resultSet.getString("code"),
+                    resultSet.getString("bookID"),
+                    resultSet.getString("memberID"),
+                    resultSet.getString("borrowDate"),
+                    resultSet.getString("dueDate"),
+                    resultSet.getString("returnDate"),
+                    resultSet.getDouble("fine")
+            ));
+        }
+        return transactionList;
     }
 
     @Override

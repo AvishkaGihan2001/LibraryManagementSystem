@@ -10,6 +10,7 @@ import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.entity.TransactionEntity;
 import static edu.ijse.library.service.ServiceFactory.ServiceType.TRANSACTION;
 import edu.ijse.library.service.custom.TransactionService;
+import java.util.ArrayList;
 
 /**
  *
@@ -28,7 +29,7 @@ public class TransactionServiceImpl implements TransactionService {
                 transactionDto.getBorrowDate(),
                 transactionDto.getDueDate()
         );
-        
+
         return transactionDao.save(transactionEntity);
 
     }
@@ -39,13 +40,33 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    public ArrayList<TransactionDto> getAll() throws Exception {
+        ArrayList<TransactionEntity> transactionEntitys = transactionDao.getAll();
+
+        // Convert each ItemEntity to ItemDto
+        ArrayList<TransactionDto> dtoList = new ArrayList<>();
+        for (TransactionEntity transactionEntity : transactionEntitys) {
+            TransactionDto transactionDto = new TransactionDto(
+                    transactionEntity.getTransactionCode(),
+                    transactionEntity.getBookCode(),
+                    transactionEntity.getMemberCode(),
+                    transactionEntity.getBorrowDate(),
+                    transactionEntity.getDueDate()
+            );
+            dtoList.add(transactionDto);
+        }
+
+        return dtoList;
+    }
+
+    @Override
     public String completeTransaction(TransactionDto transactionDto) throws Exception {
         TransactionEntity transactionEntity = new TransactionEntity(
                 transactionDto.getTransactionCode(),
                 transactionDto.getReturnDate(),
                 transactionDto.getFine()
         );
-        
+
         return transactionDao.completeTransaction(transactionEntity);
     }
 

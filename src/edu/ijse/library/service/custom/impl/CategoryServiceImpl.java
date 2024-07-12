@@ -51,7 +51,20 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public ArrayList<CategoryDto> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<CategoryEntity> categoryEntitys = categoryDao.getAll();
+
+        // Convert each ItemEntity to ItemDto
+        ArrayList<CategoryDto> dtoList = new ArrayList<>();
+        for (CategoryEntity categoryEntity : categoryEntitys) {
+            CategoryDto categoryDto = new CategoryDto(
+                    categoryEntity.getCode(),
+                    categoryEntity.getCategoryName(),
+                    categoryEntity.getDescription()
+            );
+            dtoList.add(categoryDto);
+        }
+
+        return dtoList;
     }
     
 }

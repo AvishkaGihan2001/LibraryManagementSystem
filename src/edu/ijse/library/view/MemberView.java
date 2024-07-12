@@ -6,7 +6,9 @@ package edu.ijse.library.view;
 
 import edu.ijse.library.controller.MemberController;
 import edu.ijse.library.dto.MemberDto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,6 +24,7 @@ public class MemberView extends javax.swing.JFrame {
     public MemberView() {
         MEMBER_CONTROLLER = new MemberController();
         initComponents();
+        loadTable();
     }
 
     /**
@@ -40,7 +43,7 @@ public class MemberView extends javax.swing.JFrame {
         txtCode = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        CustomerTable = new javax.swing.JTable();
+        MemberTable = new javax.swing.JTable();
         btnInsert = new javax.swing.JButton();
         lblHeader = new javax.swing.JLabel();
         lblPackSize2 = new javax.swing.JLabel();
@@ -95,7 +98,7 @@ public class MemberView extends javax.swing.JFrame {
             }
         });
 
-        CustomerTable.setModel(new javax.swing.table.DefaultTableModel(
+        MemberTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -106,22 +109,22 @@ public class MemberView extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        CustomerTable.setDragEnabled(true);
-        CustomerTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+        MemberTable.setDragEnabled(true);
+        MemberTable.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                CustomerTableAncestorAdded(evt);
+                MemberTableAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        CustomerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        MemberTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CustomerTableMouseClicked(evt);
+                MemberTableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(CustomerTable);
+        jScrollPane2.setViewportView(MemberTable);
 
         btnInsert.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
         btnInsert.setText("Insert");
@@ -291,13 +294,13 @@ public class MemberView extends javax.swing.JFrame {
         search();
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void CustomerTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CustomerTableAncestorAdded
+    private void MemberTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_MemberTableAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_CustomerTableAncestorAdded
+    }//GEN-LAST:event_MemberTableAncestorAdded
 
-    private void CustomerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustomerTableMouseClicked
-        selectCustomer();
-    }//GEN-LAST:event_CustomerTableMouseClicked
+    private void MemberTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MemberTableMouseClicked
+        selectMember();
+    }//GEN-LAST:event_MemberTableMouseClicked
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
@@ -357,7 +360,7 @@ public class MemberView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable CustomerTable;
+    private javax.swing.JTable MemberTable;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnInsert;
@@ -453,8 +456,36 @@ public class MemberView extends javax.swing.JFrame {
         }
     }
 
-    private void selectCustomer() {
+    private void selectMember() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void loadTable() {
+        try {
+            String[] columns = {"Code", "First Name", "Last Name", "Phone Number", "Address"};
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+
+            };
+            MemberTable.setModel(dtm);
+
+            ArrayList<MemberDto> memberDtos = MEMBER_CONTROLLER.getAll();
+            for (MemberDto memberDto : memberDtos) {
+                Object[] rowData = {
+                    memberDto.getCode(),
+                    memberDto.getFirstName(),
+                    memberDto.getLastName(),
+                    memberDto.getPhone(),
+                    memberDto.getAddress()
+                };
+                dtm.addRow(rowData);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
     }
 
 }

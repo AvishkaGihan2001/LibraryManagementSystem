@@ -60,12 +60,30 @@ public class BookServiceImpl implements BookService {
     @Override
     public BookDto get(String code) throws Exception {
         return bookDao.get(code);
-      
+
     }
 
     @Override
     public ArrayList<BookDto> getAll() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        ArrayList<BookEntity> entityList = bookDao.getAll();
+
+        // Convert each ItemEntity to ItemDto
+        ArrayList<BookDto> dtoList = new ArrayList<>();
+        for (BookEntity bookEntity : entityList) {
+            BookDto bookDto = new BookDto(
+                    bookEntity.getCode(),
+                    bookEntity.getTitle(),
+                    bookEntity.getAuthor(),
+                    bookEntity.getPublisher(),
+                    bookEntity.getPublishedDate(),
+                    bookEntity.getDescription(),
+                    bookEntity.getQuantity(),
+                    bookEntity.getCategoryID()
+            );
+            dtoList.add(bookDto);
+        }
+
+        return dtoList;
     }
 
 }

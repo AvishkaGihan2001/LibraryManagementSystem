@@ -7,6 +7,7 @@ package edu.ijse.library.controller;
 import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.service.ServiceFactory;
 import edu.ijse.library.service.custom.TransactionService;
+import java.util.ArrayList;
 
 /**
  *
@@ -22,6 +23,10 @@ public class TransactionController {
     
     public TransactionDto get(String code) throws Exception {
         return transactionService.get(code);
+    }
+    
+    public ArrayList<TransactionDto> getAll() throws Exception {
+        return transactionService.getAll();
     }
     
     public String completeTransaction(TransactionDto transactionDto) throws Exception {
