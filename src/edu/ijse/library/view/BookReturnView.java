@@ -300,7 +300,9 @@ public class BookReturnView extends javax.swing.JFrame {
                         fineDto.setPaid(false);
                     }
 
-                    TRANSACTION_CONTROLLER.save(fineDto);
+                    String fineResp = TRANSACTION_CONTROLLER.save(fineDto);
+                    
+                    JOptionPane.showMessageDialog(this, fineResp);
 
                 } else {
                     JOptionPane.showMessageDialog(this, resp);

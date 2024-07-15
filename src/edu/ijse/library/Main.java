@@ -29,8 +29,8 @@ public class Main {
 //        new MemberView().setVisible(true);
 //       new LoginView().setVisible(true);
 //        new RegisterView().setVisible(true);
-//        new BookBorrowView().setVisible(true);
-//        new BookReturnView().setVisible(true);
+        new BookBorrowView().setVisible(true);
+        new BookReturnView().setVisible(true);
         new FineView().setVisible(true);
     }
 

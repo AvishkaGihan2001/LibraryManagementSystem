@@ -82,6 +82,14 @@ public class TransactionServiceImpl implements TransactionService {
                 fineDto.getAmount(),
                 fineDto.isPaid()
         );
+        
+        if (fineDto.isPaid() == true) {
+            TransactionEntity transactionEntity = new TransactionEntity(
+                        fineDto.getTransactionCode()
+                );
+
+                String trResp = transactionDao.update(transactionEntity);
+        }
         return transactionDao.save(fineEntity);
     }
 
