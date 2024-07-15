@@ -5,7 +5,9 @@
 package edu.ijse.library.dao.custom;
 
 import edu.ijse.library.dao.SuperDAO;
+import edu.ijse.library.dto.FineDto;
 import edu.ijse.library.dto.TransactionDto;
+import edu.ijse.library.entity.FineEntity;
 import edu.ijse.library.entity.TransactionEntity;
 import java.util.ArrayList;
 
@@ -22,5 +24,13 @@ public interface TransactionDao extends SuperDAO {
     String completeTransaction(TransactionEntity transactionEntity) throws Exception;
     
     ArrayList<TransactionEntity> getAll() throws Exception;
+    
+    String save(FineEntity fineEntity) throws Exception;
+    
+    FineDto getFine(String code) throws Exception;
+    
+    String update(FineEntity fineEntity) throws Exception;
+    
+    String update(TransactionEntity transactionEntity) throws Exception;
 
 }

@@ -6,7 +6,9 @@ package edu.ijse.library.dao.custom.impl;
 
 import edu.ijse.library.dao.CrudUtil;
 import edu.ijse.library.dao.custom.TransactionDao;
+import edu.ijse.library.dto.FineDto;
 import edu.ijse.library.dto.TransactionDto;
+import edu.ijse.library.entity.FineEntity;
 import edu.ijse.library.entity.TransactionEntity;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -78,6 +80,63 @@ public class TransactionDaoImpl implements TransactionDao {
                 transactionEntity.getTransactionCode()
         );
         return isSaved ? "Success" : "Fail";
+    }
+
+    @Override
+    public String save(FineEntity fineEntity) throws Exception {
+        boolean isSaved = CrudUtil.executeUpdate(
+                "INSERT INTO fine (transactionID, amount, paid) "
+                + "SELECT t.transactionID, ?, ? "
+                + "FROM transaction t "
+                + "WHERE t.code = ?",
+                fineEntity.getAmount(),
+                fineEntity.isPaid(),
+                fineEntity.getTransactionCode()
+        );
+        return isSaved ? "Success" : "Fail";
+    }
+
+    @Override
+    public FineDto getFine(String code) throws Exception {
+        ResultSet rst = CrudUtil.executeQuery(
+                "SELECT f.fineID, f.transactionID, f.amount, f.paid "
+                + "FROM fine f "
+                + "INNER JOIN transaction t ON f.transactionID = t.transactionID "
+                + "WHERE t.code = ?",
+                code
+        );
+        if (rst.next()) {
+            FineDto fineDto = new FineDto(
+                    rst.getInt("fineID"),
+                    rst.getString("transactionID"),
+                    rst.getDouble("amount"),
+                    rst.getBoolean("paid")
+            );
+            return fineDto;
+        }
+        return null;
+    }
+
+    @Override
+    public String update(FineEntity fineEntity) throws Exception {
+        boolean isUpdated = CrudUtil.executeUpdate(
+                "UPDATE fine f "
+                + "INNER JOIN transaction t ON f.transactionID = t.transactionID "
+                + "SET f.paid = ? "
+                + "WHERE t.code = ?",
+                fineEntity.isPaid(),
+                fineEntity.getTransactionCode()
+        );
+        return isUpdated ? "Success" : "Fail";
+    }
+
+    @Override
+    public String update(TransactionEntity transactionEntity) throws Exception {
+        boolean isUpdated = CrudUtil.executeUpdate(
+                "UPDATE transaction SET fine = 0 WHERE code = ?",
+                transactionEntity.getTransactionCode()
+        );
+        return isUpdated ? "Success" : "Fail";
     }
 
 }

@@ -6,10 +6,13 @@ package edu.ijse.library.service.custom.impl;
 
 import edu.ijse.library.dao.DaoFactory;
 import edu.ijse.library.dao.custom.TransactionDao;
+import edu.ijse.library.db.DBConnection;
+import edu.ijse.library.dto.FineDto;
 import edu.ijse.library.dto.TransactionDto;
+import edu.ijse.library.entity.FineEntity;
 import edu.ijse.library.entity.TransactionEntity;
-import static edu.ijse.library.service.ServiceFactory.ServiceType.TRANSACTION;
 import edu.ijse.library.service.custom.TransactionService;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -51,7 +54,9 @@ public class TransactionServiceImpl implements TransactionService {
                     transactionEntity.getBookCode(),
                     transactionEntity.getMemberCode(),
                     transactionEntity.getBorrowDate(),
-                    transactionEntity.getDueDate()
+                    transactionEntity.getDueDate(),
+                    transactionEntity.getReturnDate(),
+                    transactionEntity.getFine()
             );
             dtoList.add(transactionDto);
         }
@@ -68,6 +73,66 @@ public class TransactionServiceImpl implements TransactionService {
         );
 
         return transactionDao.completeTransaction(transactionEntity);
+    }
+
+    @Override
+    public String save(FineDto fineDto) throws Exception {
+        FineEntity fineEntity = new FineEntity(
+                fineDto.getTransactionCode(),
+                fineDto.getAmount(),
+                fineDto.isPaid()
+        );
+        return transactionDao.save(fineEntity);
+    }
+
+    @Override
+    public FineDto getFine(String code) throws Exception {
+        return transactionDao.getFine(code);
+    }
+
+    @Override
+    public String update(FineDto fineDto) throws Exception {
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            connection.setAutoCommit(false);
+
+            FineEntity fineEntity = new FineEntity(
+                    fineDto.getTransactionCode(),
+                    fineDto.isPaid()
+            );
+            String resp = transactionDao.update(fineEntity);
+            if (resp.equals("Success")) {
+
+                TransactionEntity transactionEntity = new TransactionEntity(
+                        fineDto.getTransactionCode()
+                );
+
+                String trResp = transactionDao.update(transactionEntity);
+
+                if (trResp.equals("Success")) {
+                    connection.commit();
+                    return "Success";
+
+                } else {
+                    connection.rollback();
+                    return "Transaction update Error";
+                }
+
+            } else {
+                connection.rollback();
+                return "Fine update Error";
+            }
+
+        } catch (Exception e) {
+
+            connection.rollback();
+            e.printStackTrace();
+            return "Server Error: " + e.getMessage();
+
+        } finally {
+            connection.setAutoCommit(true);
+        }
+
     }
 
 }

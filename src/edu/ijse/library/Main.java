@@ -8,6 +8,7 @@ import edu.ijse.library.view.BookBorrowView;
 import edu.ijse.library.view.BookReturnView;
 import edu.ijse.library.view.BookView;
 import edu.ijse.library.view.CategoryView;
+import edu.ijse.library.view.FineView;
 import edu.ijse.library.view.LoginView;
 import edu.ijse.library.view.MemberView;
 import edu.ijse.library.view.RegisterView;
@@ -28,8 +29,9 @@ public class Main {
 //        new MemberView().setVisible(true);
 //       new LoginView().setVisible(true);
 //        new RegisterView().setVisible(true);
-        new BookBorrowView().setVisible(true);
+//        new BookBorrowView().setVisible(true);
 //        new BookReturnView().setVisible(true);
+        new FineView().setVisible(true);
     }
 
 }

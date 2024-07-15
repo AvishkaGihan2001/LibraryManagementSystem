@@ -11,23 +11,28 @@ package edu.ijse.library.entity;
 public class FineEntity {
 
     private int fineID;
-    private int transactionID;
+    private String transactionCode;
     private double amount;
     private boolean paid;
 
     public FineEntity() {
     }
 
-    public FineEntity(int fineID, int transactionID, double amount, boolean paid) {
+    public FineEntity(int fineID, String transactionCode, double amount, boolean paid) {
         this.fineID = fineID;
-        this.transactionID = transactionID;
+        this.transactionCode = transactionCode;
         this.amount = amount;
         this.paid = paid;
     }
 
-    public FineEntity(int transactionID, double amount, boolean paid) {
-        this.transactionID = transactionID;
+    public FineEntity(String transactionCode, double amount, boolean paid) {
+        this.transactionCode = transactionCode;
         this.amount = amount;
+        this.paid = paid;
+    }
+
+    public FineEntity(String transactionCode, boolean paid) {
+        this.transactionCode = transactionCode;
         this.paid = paid;
     }
 
@@ -46,17 +51,17 @@ public class FineEntity {
     }
 
     /**
-     * @return the transactionID
+     * @return the transactionCode
      */
-    public int getTransactionID() {
-        return transactionID;
+    public String getTransactionCode() {
+        return transactionCode;
     }
 
     /**
-     * @param transactionID the transactionID to set
+     * @param transactionCode the transactionCode to set
      */
-    public void setTransactionID(int transactionID) {
-        this.transactionID = transactionID;
+    public void setTransactionCode(String transactionCode) {
+        this.transactionCode = transactionCode;
     }
 
     /**
@@ -89,10 +94,7 @@ public class FineEntity {
 
     @Override
     public String toString() {
-        return "FineEntity{" + "fineID=" + fineID + ", transactionID=" + transactionID + ", amount=" + amount + ", paid=" + paid + '}';
+        return "FineEntity{" + "fineID=" + fineID + ", transactionCode=" + transactionCode + ", amount=" + amount + ", paid=" + paid + '}';
     }
-    
-    
 
-   
 }

@@ -57,6 +57,10 @@ public class TransactionDto {
         this.fine = fine;
     }
 
+    public TransactionDto(String transactionCode) {
+        this.transactionCode = transactionCode;
+    }
+
     /**
      * @return the transactionID
      */

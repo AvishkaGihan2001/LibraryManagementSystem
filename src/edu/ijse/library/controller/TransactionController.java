@@ -4,6 +4,7 @@
  */
 package edu.ijse.library.controller;
 
+import edu.ijse.library.dto.FineDto;
 import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.service.ServiceFactory;
 import edu.ijse.library.service.custom.TransactionService;
@@ -31,6 +32,18 @@ public class TransactionController {
     
     public String completeTransaction(TransactionDto transactionDto) throws Exception {
         return transactionService.completeTransaction(transactionDto);
+    }
+    
+    public String save(FineDto fineDto) throws Exception {
+        return transactionService.save(fineDto);
+    }
+    
+    public FineDto getFine(String code) throws Exception {
+        return transactionService.getFine(code);
+    }
+    
+    public String update(FineDto fineDto) throws Exception {
+        return transactionService.update(fineDto);
     }
     
     

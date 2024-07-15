@@ -4,6 +4,7 @@
  */
 package edu.ijse.library.service.custom;
 
+import edu.ijse.library.dto.FineDto;
 import edu.ijse.library.dto.TransactionDto;
 import edu.ijse.library.service.SuperService;
 import java.util.ArrayList;
@@ -22,4 +23,9 @@ public interface TransactionService extends SuperService{
     
     public ArrayList<TransactionDto> getAll() throws Exception;
     
+    public String save(FineDto fineDto) throws Exception;
+    
+    public FineDto getFine(String code) throws Exception;
+    
+    public String update(FineDto fineDto) throws Exception;
 }

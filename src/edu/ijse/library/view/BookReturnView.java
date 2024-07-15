@@ -5,6 +5,7 @@
 package edu.ijse.library.view;
 
 import edu.ijse.library.controller.TransactionController;
+import edu.ijse.library.dto.FineDto;
 import edu.ijse.library.dto.TransactionDto;
 import javax.swing.JOptionPane;
 import java.util.Date;
@@ -264,24 +265,56 @@ public class BookReturnView extends javax.swing.JFrame {
 
             long daysBetween = ChronoUnit.DAYS.between(dueDate, returnDate);
 
-            double fine = daysBetween * 20;
+            if (daysBetween > 0) {
 
-            TransactionDto transactionDto = new TransactionDto(
-                    txtTransactionCode.getText(),
-                    returnDateString,
-                    fine
-            );
-            
-            String resp = TRANSACTION_CONTROLLER.completeTransaction(transactionDto);
-            JOptionPane.showMessageDialog(this, resp);
+                double fine = daysBetween * 20;
+                TransactionDto transactionDto = new TransactionDto(
+                        txtTransactionCode.getText(),
+                        returnDateString,
+                        fine
+                );
+
+                String resp = TRANSACTION_CONTROLLER.completeTransaction(transactionDto);
+                if (fine > 0) {
+                    String[] options = {"Pay Now", "Pay Later"};
+                    int choice = JOptionPane.showOptionDialog(
+                            this,
+                            "Fine amount: " + fine,
+                            "Fine Payment",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.INFORMATION_MESSAGE,
+                            null,
+                            options,
+                            options[0]
+                    );
+
+                    FineDto fineDto = new FineDto(
+                            txtTransactionCode.getText(),
+                            fine,
+                            false
+                    );
+
+                    if (choice == JOptionPane.YES_OPTION) {
+                        fineDto.setPaid(true);
+                    } else {
+                        fineDto.setPaid(false);
+                    }
+
+                    TRANSACTION_CONTROLLER.save(fineDto);
+
+                } else {
+                    JOptionPane.showMessageDialog(this, resp);
+                }
+            }
+
             clear();
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }
-    
-    private void clear(){
+
+    private void clear() {
         txtTransactionCode.setText("");
     }
 

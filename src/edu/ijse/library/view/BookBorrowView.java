@@ -448,6 +448,7 @@ public class BookBorrowView extends javax.swing.JFrame {
                 }else{
                     status = "Completed";
                 }
+                
                 Object[] rowData = {
                     transactionDto.getTransactionCode(),
                     transactionDto.getBookCode(),

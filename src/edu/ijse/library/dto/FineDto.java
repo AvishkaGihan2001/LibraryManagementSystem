@@ -11,23 +11,28 @@ package edu.ijse.library.dto;
 public class FineDto {
 
     private int fineID;
-    private int transactionID;
+    private String transactionCode;
     private double amount;
     private boolean paid;
 
     public FineDto() {
     }
 
-    public FineDto(int fineID, int transactionID, double amount, boolean paid) {
+    public FineDto(int fineID, String transactionCode, double amount, boolean paid) {
         this.fineID = fineID;
-        this.transactionID = transactionID;
+        this.transactionCode = transactionCode;
         this.amount = amount;
         this.paid = paid;
     }
 
-    public FineDto(int transactionID, double amount, boolean paid) {
-        this.transactionID = transactionID;
+    public FineDto(String transactionCode, double amount, boolean paid) {
+        this.transactionCode = transactionCode;
         this.amount = amount;
+        this.paid = paid;
+    }
+
+    public FineDto(String transactionCode, boolean paid) {
+        this.transactionCode = transactionCode;
         this.paid = paid;
     }
 
@@ -46,17 +51,17 @@ public class FineDto {
     }
 
     /**
-     * @return the transactionID
+     * @return the transactionCode
      */
-    public int getTransactionID() {
-        return transactionID;
+    public String getTransactionCode() {
+        return transactionCode;
     }
 
     /**
-     * @param transactionID the transactionID to set
+     * @param transactionCode the transactionCode to set
      */
-    public void setTransactionID(int transactionID) {
-        this.transactionID = transactionID;
+    public void setTransactionCode(String transactionCode) {
+        this.transactionCode = transactionCode;
     }
 
     /**
@@ -89,11 +94,7 @@ public class FineDto {
 
     @Override
     public String toString() {
-        return "FineDto{" + "fineID=" + fineID + ", transactionID=" + transactionID + ", amount=" + amount + ", paid=" + paid + '}';
+        return "FineDto{" + "fineID=" + fineID + ", transactionCode=" + transactionCode + ", amount=" + amount + ", paid=" + paid + '}';
     }
-    
-    
-
-   
 
 }
