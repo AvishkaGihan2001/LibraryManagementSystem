@@ -17,6 +17,8 @@ public interface BookService extends SuperService{
     public String save(BookDto bookDto) throws Exception;
 
     public String update(BookDto bookDto) throws Exception;
+    
+    public String updateQuantity(BookDto bookDto) throws  Exception;
 
     public String delete(String code) throws Exception;
 

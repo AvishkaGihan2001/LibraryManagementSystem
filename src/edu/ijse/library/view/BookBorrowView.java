@@ -531,7 +531,7 @@ public class BookBorrowView extends javax.swing.JFrame {
             if (bookDto != null) {
                 lblBookDetails.setText(bookDto.getTitle() + " | " + bookDto.getDescription());
             } else {
-                lblBookDetails.setText("Item Not Found");
+                lblBookDetails.setText("Book Not Found");
             }
 
         } catch (Exception e) {
@@ -548,7 +548,7 @@ public class BookBorrowView extends javax.swing.JFrame {
             if (memberDto != null) {
                 lblMemberDetails.setText(memberDto.getFirstName() + " | " + memberDto.getLastName() + " | " + memberDto.getAddress());
             } else {
-                lblMemberDetails.setText("Item Not Found");
+                lblMemberDetails.setText("Member Not Found");
             }
 
         } catch (Exception e) {
@@ -559,16 +559,41 @@ public class BookBorrowView extends javax.swing.JFrame {
 
     private void placeTransaction() {
         try {
-            TransactionDto transactionDto = new TransactionDto(
-                    txtTransactionCode.getText(),
-                    txtBookCode.getText(),
-                    txtMemberCode.getText(),
-                    txtBorrowDate.getText(),
-                    txtDueDate.getText()
-            );
 
-            String resp = TRANSACTION_CONTROLLER.save(transactionDto);
-            JOptionPane.showMessageDialog(this, resp);
+            String bookCode = txtBookCode.getText();
+            BookDto bookDto = BOOK_CONTROLLER.get(bookCode);
+
+            int quantity = bookDto.getQuantity();
+
+            if (quantity > 0) {
+
+                BookDto bookDto1 = new BookDto(
+                        bookCode,
+                        quantity - 1
+                );
+
+                String respBook = BOOK_CONTROLLER.updateQuantity(bookDto1);
+
+                if (respBook.equals("Success")) {
+                    TransactionDto transactionDto = new TransactionDto(
+                            txtTransactionCode.getText(),
+                            txtBookCode.getText(),
+                            txtMemberCode.getText(),
+                            txtBorrowDate.getText(),
+                            txtDueDate.getText()
+                    );
+
+                    String resp = TRANSACTION_CONTROLLER.save(transactionDto);
+                    JOptionPane.showMessageDialog(this, resp);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Failed to update book quantity");
+                }
+
+            } else {
+                String resp = "Book unavailabe";
+                JOptionPane.showMessageDialog(this, resp);
+            }
+
             clear();
             loadTable();
         } catch (Exception e) {

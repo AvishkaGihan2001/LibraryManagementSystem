@@ -46,6 +46,13 @@ public class BookEntity {
         this.categoryID = categoryID;
     }
 
+    public BookEntity(String code, int quantity) {
+        this.code = code;
+        this.quantity = quantity;
+    }
+    
+    
+
     /**
      * @return the bookID
      */

@@ -24,7 +24,11 @@ public class BookController {
     public String update(BookDto bookDto) throws Exception {
         return bookService.update(bookDto);
     }
-
+    
+    public String updateQuantity(BookDto bookDto) throws Exception {
+        return bookService.updateQuantity(bookDto);
+    }
+    
     public String delete(String code) throws Exception {
         return bookService.delete(code);
     }

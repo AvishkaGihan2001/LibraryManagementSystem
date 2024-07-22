@@ -478,6 +478,26 @@ public class BookReturnView extends javax.swing.JFrame {
 
                     JOptionPane.showMessageDialog(this, fineResp);
 
+                    if (fineResp.equals("Success")) {
+
+                        String transactionCode = txtTransactionCode.getText();
+                        TransactionDto transactionDto1 = TRANSACTION_CONTROLLER.get(transactionCode);
+
+                        String bookCode = transactionDto1.getBookCode();
+                        BookDto bookDto = BOOK_CONTROLLER.get(bookCode);
+
+                        int quantity = bookDto.getQuantity();
+
+                        BookDto bookDto1 = new BookDto(
+                                bookCode,
+                                quantity + 1
+                        );
+
+                        BOOK_CONTROLLER.updateQuantity(bookDto1);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Failed to update fine");
+                    }
+
                 } else {
                     JOptionPane.showMessageDialog(this, resp);
                 }

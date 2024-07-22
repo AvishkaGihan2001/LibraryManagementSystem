@@ -44,6 +44,13 @@ public class BookDto {
         this.quantity = quantity;
         this.categoryID = categoryID;
     }
+
+    public BookDto(String code, int quantity) {
+        this.code = code;
+        this.quantity = quantity;
+    }
+    
+    
     
     
 

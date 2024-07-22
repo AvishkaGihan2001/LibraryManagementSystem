@@ -18,6 +18,8 @@ public interface BookDao extends SuperDAO {
     String save(BookEntity bookEntity) throws Exception;
 
     String update(BookEntity bookEntity) throws Exception;
+    
+    String updateQuantity(BookEntity bookEntity) throws  Exception;
 
     String delete(String code) throws Exception;
 

@@ -49,6 +49,15 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
+    public String updateQuantity(BookEntity bookEntity) throws Exception {
+        boolean isUpdated = CrudUtil.executeUpdate("UPDATE book SET quantity = ? WHERE code = ?",
+                bookEntity.getQuantity(),
+                bookEntity.getCode()
+        );
+        return isUpdated ? "Success" : "Fail";
+    }
+
+    @Override
     public String delete(String code) throws Exception {
         boolean isDeleted = CrudUtil.executeUpdate("DELETE FROM book WHERE code = ?", code);
         return isDeleted ? "Success" : "Fail";

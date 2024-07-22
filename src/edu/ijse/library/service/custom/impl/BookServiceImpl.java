@@ -51,6 +51,16 @@ public class BookServiceImpl implements BookService {
 
         return bookDao.update(bookEntity);
     }
+    
+    @Override
+    public String updateQuantity(BookDto bookDto) throws Exception {
+        BookEntity bookEntity = new BookEntity(
+                bookDto.getCode(),
+                bookDto.getQuantity()
+        );
+        
+        return bookDao.updateQuantity(bookEntity);
+    }
 
     @Override
     public String delete(String code) throws Exception {
@@ -85,5 +95,7 @@ public class BookServiceImpl implements BookService {
 
         return dtoList;
     }
+
+    
 
 }
