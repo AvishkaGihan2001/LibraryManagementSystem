@@ -54,6 +54,14 @@ public class MemberView extends javax.swing.JFrame {
         lblDescription = new javax.swing.JLabel();
         lblDescription1 = new javax.swing.JLabel();
         txtLastName = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        btnBook1 = new javax.swing.JButton();
+        btnMember1 = new javax.swing.JButton();
+        btnCategory1 = new javax.swing.JButton();
+        btnBorrowBook1 = new javax.swing.JButton();
+        btnReturnBook1 = new javax.swing.JButton();
+        btnFine1 = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +143,7 @@ public class MemberView extends javax.swing.JFrame {
         });
 
         lblHeader.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblHeader.setForeground(new java.awt.Color(153, 102, 255));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Member Form");
         lblHeader.setToolTipText("");
@@ -180,29 +189,129 @@ public class MemberView extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(204, 153, 255));
+
+        btnBook1.setBackground(new java.awt.Color(204, 0, 255));
+        btnBook1.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnBook1.setText("Book");
+        btnBook1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBook1(evt);
+            }
+        });
+
+        btnMember1.setBackground(new java.awt.Color(204, 0, 255));
+        btnMember1.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnMember1.setText("Member");
+        btnMember1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMember1ActionPerformed(evt);
+            }
+        });
+
+        btnCategory1.setBackground(new java.awt.Color(204, 0, 255));
+        btnCategory1.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnCategory1.setText("Category");
+        btnCategory1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategory1ActionPerformed(evt);
+            }
+        });
+
+        btnBorrowBook1.setBackground(new java.awt.Color(204, 0, 255));
+        btnBorrowBook1.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnBorrowBook1.setText("Borrow Book");
+        btnBorrowBook1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrowBook1ActionPerformed(evt);
+            }
+        });
+
+        btnReturnBook1.setBackground(new java.awt.Color(204, 0, 255));
+        btnReturnBook1.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnReturnBook1.setText("Return Book");
+        btnReturnBook1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnBook1ActionPerformed(evt);
+            }
+        });
+
+        btnFine1.setBackground(new java.awt.Color(204, 0, 255));
+        btnFine1.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnFine1.setText("Fine");
+        btnFine1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFine1ActionPerformed(evt);
+            }
+        });
+
+        btnRegister.setBackground(new java.awt.Color(204, 0, 255));
+        btnRegister.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnCategory1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBook1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnMember1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBorrowBook1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+            .addComponent(btnReturnBook1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnFine1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(btnCategory1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBook1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMember1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBorrowBook1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReturnBook1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFine1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 395, Short.MAX_VALUE)
                                 .addComponent(btnInsert)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnUpdate)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDelete)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnClear)))
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btnClear)
+                                .addGap(24, 24, 24))
+                            .addComponent(lblHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2)
+                                .addContainerGap())))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +323,7 @@ public class MemberView extends javax.swing.JFrame {
                                         .addComponent(lblDescription)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(373, 373, 373))
+                                .addGap(114, 114, 114))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblPackSize2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -222,22 +331,21 @@ public class MemberView extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(259, 259, 259))))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblItemCode)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(btnSearch)
-                .addGap(269, 269, 269))
+                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(lblItemCode)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(btnSearch)
+                                .addGap(10, 10, 10)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblItemCode)
@@ -258,15 +366,16 @@ public class MemberView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPackSize2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsert)
                     .addComponent(btnUpdate)
                     .addComponent(btnDelete)
                     .addComponent(btnClear))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -324,6 +433,48 @@ public class MemberView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLastNameActionPerformed
 
+    private void btnBook1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBook1
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new BookView().setVisible(true);
+    }//GEN-LAST:event_btnBook1
+
+    private void btnMember1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMember1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new MemberView().setVisible(true);
+    }//GEN-LAST:event_btnMember1ActionPerformed
+
+    private void btnCategory1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategory1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new CategoryView().setVisible(true);
+    }//GEN-LAST:event_btnCategory1ActionPerformed
+
+    private void btnBorrowBook1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrowBook1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new BookBorrowView().setVisible(true);
+    }//GEN-LAST:event_btnBorrowBook1ActionPerformed
+
+    private void btnReturnBook1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnBook1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new BookReturnView().setVisible(true);
+    }//GEN-LAST:event_btnReturnBook1ActionPerformed
+
+    private void btnFine1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFine1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new FineView().setVisible(true);
+    }//GEN-LAST:event_btnFine1ActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new RegisterView().setVisible(true);
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -361,11 +512,19 @@ public class MemberView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable MemberTable;
+    private javax.swing.JButton btnBook1;
+    private javax.swing.JButton btnBorrowBook1;
+    private javax.swing.JButton btnCategory1;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnFine1;
     private javax.swing.JButton btnInsert;
+    private javax.swing.JButton btnMember1;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnReturnBook1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblDescription1;

@@ -9,6 +9,7 @@ import edu.ijse.library.view.BookReturnView;
 import edu.ijse.library.view.BookView;
 import edu.ijse.library.view.CategoryView;
 import edu.ijse.library.view.FineView;
+import edu.ijse.library.view.HomeView;
 import edu.ijse.library.view.LoginView;
 import edu.ijse.library.view.MemberView;
 import edu.ijse.library.view.RegisterView;
@@ -24,14 +25,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-//        new BookView().setVisible(true);
-//        new CategoryView().setVisible(true);
-//        new MemberView().setVisible(true);
-//       new LoginView().setVisible(true);
-//        new RegisterView().setVisible(true);
-        new BookBorrowView().setVisible(true);
-        new BookReturnView().setVisible(true);
-        new FineView().setVisible(true);
+        new LoginView().setVisible(true);
+
     }
 
 }

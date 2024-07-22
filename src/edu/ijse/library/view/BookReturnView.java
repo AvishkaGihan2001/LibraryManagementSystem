@@ -4,8 +4,12 @@
  */
 package edu.ijse.library.view;
 
+import edu.ijse.library.controller.BookController;
+import edu.ijse.library.controller.MemberController;
 import edu.ijse.library.controller.TransactionController;
+import edu.ijse.library.dto.BookDto;
 import edu.ijse.library.dto.FineDto;
+import edu.ijse.library.dto.MemberDto;
 import edu.ijse.library.dto.TransactionDto;
 import javax.swing.JOptionPane;
 import java.util.Date;
@@ -23,9 +27,13 @@ public class BookReturnView extends javax.swing.JFrame {
      * Creates new form BookReturnView
      */
     private final TransactionController TRANSACTION_CONTROLLER;
+    private final BookController BOOK_CONTROLLER;
+    private final MemberController MEMBER_CONTROLLER;
 
     public BookReturnView() {
         TRANSACTION_CONTROLLER = new TransactionController();
+        BOOK_CONTROLLER = new BookController();
+        MEMBER_CONTROLLER = new MemberController();
         initComponents();
     }
 
@@ -49,18 +57,26 @@ public class BookReturnView extends javax.swing.JFrame {
         lblPackSize3 = new javax.swing.JLabel();
         lblHeader = new javax.swing.JLabel();
         lblDueDate = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnBook = new javax.swing.JButton();
+        btnMember = new javax.swing.JButton();
+        btnCategory = new javax.swing.JButton();
+        btnBorrowBook = new javax.swing.JButton();
+        btnReturnBook = new javax.swing.JButton();
+        btnFine = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblItemCode.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblItemCode.setText("Book Code :");
+        lblItemCode.setText("Book  :");
 
         lblMemberDetails.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
 
         lblBookDetails.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
 
         lblDescription.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblDescription.setText("Member Code :");
+        lblDescription.setText("Member  :");
 
         txtTransactionCode.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTransactionCode.addActionListener(new java.awt.event.ActionListener() {
@@ -92,80 +108,171 @@ public class BookReturnView extends javax.swing.JFrame {
         lblPackSize3.setText("Due Date   :");
 
         lblHeader.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblHeader.setForeground(new java.awt.Color(153, 102, 255));
         lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHeader.setText("Book Return Form");
         lblHeader.setToolTipText("");
 
         lblDueDate.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
 
+        jPanel1.setBackground(new java.awt.Color(204, 153, 255));
+
+        btnBook.setBackground(new java.awt.Color(204, 0, 255));
+        btnBook.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnBook.setText("Book");
+        btnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBook(evt);
+            }
+        });
+
+        btnMember.setBackground(new java.awt.Color(204, 0, 255));
+        btnMember.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnMember.setText("Member");
+        btnMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMemberActionPerformed(evt);
+            }
+        });
+
+        btnCategory.setBackground(new java.awt.Color(204, 0, 255));
+        btnCategory.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnCategory.setText("Category");
+        btnCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCategoryActionPerformed(evt);
+            }
+        });
+
+        btnBorrowBook.setBackground(new java.awt.Color(204, 0, 255));
+        btnBorrowBook.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnBorrowBook.setText("Borrow Book");
+        btnBorrowBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrowBookActionPerformed(evt);
+            }
+        });
+
+        btnReturnBook.setBackground(new java.awt.Color(204, 0, 255));
+        btnReturnBook.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnReturnBook.setText("Return Book");
+        btnReturnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturnBookActionPerformed(evt);
+            }
+        });
+
+        btnFine.setBackground(new java.awt.Color(204, 0, 255));
+        btnFine.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnFine.setText("Fine");
+        btnFine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFineActionPerformed(evt);
+            }
+        });
+
+        btnRegister.setBackground(new java.awt.Color(204, 0, 255));
+        btnRegister.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnRegister.setText("Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnMember, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBorrowBook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+            .addComponent(btnReturnBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnFine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(btnCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMember, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBorrowBook, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReturnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnFine, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblDescription)
-                            .addComponent(lblItemCode))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblBookDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblMemberDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)))
+                        .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 796, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblPackSize)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(btnTransactionSearch)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(lblPackSize3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(109, 109, 109)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDescription)
+                                    .addComponent(lblItemCode)
+                                    .addComponent(lblPackSize))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnComplete))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(btnTransactionSearch))
+                                    .addComponent(lblBookDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                                    .addComponent(lblMemberDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(lblDueDate, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)))))
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                    .addContainerGap()))
+                                .addGap(60, 60, 60)
+                                .addComponent(lblPackSize3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnComplete)
+                                    .addComponent(lblDueDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPackSize)
                     .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTransactionSearch))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblItemCode)
                     .addComponent(lblBookDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescription)
                     .addComponent(lblMemberDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblPackSize3)
                     .addComponent(lblDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                .addGap(58, 58, 58)
                 .addComponent(btnComplete)
-                .addContainerGap(85, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(349, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -185,6 +292,48 @@ public class BookReturnView extends javax.swing.JFrame {
         completeTransaction();
 
     }//GEN-LAST:event_btnCompleteActionPerformed
+
+    private void btnBook(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBook
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new BookView().setVisible(true);
+    }//GEN-LAST:event_btnBook
+
+    private void btnMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemberActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new MemberView().setVisible(true);
+    }//GEN-LAST:event_btnMemberActionPerformed
+
+    private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new CategoryView().setVisible(true);
+    }//GEN-LAST:event_btnCategoryActionPerformed
+
+    private void btnBorrowBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrowBookActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new BookBorrowView().setVisible(true);
+    }//GEN-LAST:event_btnBorrowBookActionPerformed
+
+    private void btnReturnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnBookActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new BookReturnView().setVisible(true);
+    }//GEN-LAST:event_btnReturnBookActionPerformed
+
+    private void btnFineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFineActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new FineView().setVisible(true);
+    }//GEN-LAST:event_btnFineActionPerformed
+
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        new RegisterView().setVisible(true);
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,8 +371,16 @@ public class BookReturnView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBook;
+    private javax.swing.JButton btnBorrowBook;
+    private javax.swing.JButton btnCategory;
     private javax.swing.JButton btnComplete;
+    private javax.swing.JButton btnFine;
+    private javax.swing.JButton btnMember;
+    private javax.swing.JButton btnRegister;
+    private javax.swing.JButton btnReturnBook;
     private javax.swing.JButton btnTransactionSearch;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblBookDetails;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblDueDate;
@@ -237,12 +394,29 @@ public class BookReturnView extends javax.swing.JFrame {
 
     private void search() {
         try {
+
             String code = txtTransactionCode.getText();
             TransactionDto transactionDto = TRANSACTION_CONTROLLER.get(code);
 
+            String bookCode = transactionDto.getBookCode();
+            BookDto bookDto = BOOK_CONTROLLER.get(bookCode);
+
+            if (bookDto != null) {
+                lblBookDetails.setText(bookDto.getTitle() + " | " + bookDto.getDescription());
+            } else {
+                lblBookDetails.setText("Book Not Found");
+            }
+
+            String memberCode = transactionDto.getMemberCode();
+            MemberDto memberDto = MEMBER_CONTROLLER.get(memberCode);
+
+            if (memberDto != null) {
+                lblMemberDetails.setText(memberDto.getFirstName() + " | " + memberDto.getLastName() + " | " + memberDto.getAddress());
+            } else {
+                lblMemberDetails.setText("Member Not Found");
+            }
+
             if (transactionDto != null) {
-                lblBookDetails.setText(transactionDto.getBookCode());
-                lblMemberDetails.setText(transactionDto.getMemberCode());
                 lblDueDate.setText(transactionDto.getDueDate());
 
             } else {
@@ -301,7 +475,7 @@ public class BookReturnView extends javax.swing.JFrame {
                     }
 
                     String fineResp = TRANSACTION_CONTROLLER.save(fineDto);
-                    
+
                     JOptionPane.showMessageDialog(this, fineResp);
 
                 } else {

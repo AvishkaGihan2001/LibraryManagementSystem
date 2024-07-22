@@ -4,23 +4,16 @@
  */
 package edu.ijse.library.view;
 
-import edu.ijse.library.controller.TransactionController;
-import edu.ijse.library.dto.FineDto;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author AVISHKA GIHAN
  */
-public class FineView extends javax.swing.JFrame {
+public class HomeView extends javax.swing.JFrame {
 
     /**
-     * Creates new form FineView
+     * Creates new form HomeView
      */
-    private final TransactionController TRANSACTION_CONTROLLER;
-
-    public FineView() {
-        TRANSACTION_CONTROLLER = new TransactionController();
+    public HomeView() {
         initComponents();
     }
 
@@ -33,60 +26,20 @@ public class FineView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblHeader = new javax.swing.JLabel();
-        txtTransactionCode = new javax.swing.JTextField();
-        lblPackSize = new javax.swing.JLabel();
-        btnFine = new javax.swing.JButton();
-        lblFineAmount = new javax.swing.JLabel();
-        btnPay = new javax.swing.JButton();
-        lblPackSize1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnBook = new javax.swing.JButton();
         btnMember = new javax.swing.JButton();
         btnCategory = new javax.swing.JButton();
         btnBorrowBook = new javax.swing.JButton();
         btnReturnBook = new javax.swing.JButton();
-        btnFine1 = new javax.swing.JButton();
+        btnFine = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
+        lblHeader = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        lblHeader.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
-        lblHeader.setForeground(new java.awt.Color(153, 102, 255));
-        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHeader.setText("Fine Form");
-        lblHeader.setToolTipText("");
-
-        txtTransactionCode.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtTransactionCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTransactionCodeActionPerformed(evt);
-            }
-        });
-
-        lblPackSize.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblPackSize.setText("Fine Amount   :");
-
-        btnFine.setFont(new java.awt.Font("Maiandra GD", 1, 12)); // NOI18N
-        btnFine.setText("Search");
-        btnFine.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFineActionPerformed(evt);
-            }
-        });
-
-        lblFineAmount.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
-
-        btnPay.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
-        btnPay.setLabel("Pay");
-        btnPay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPayActionPerformed(evt);
-            }
-        });
-
-        lblPackSize1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblPackSize1.setText("Transaction Code   :");
+        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1000, 600));
 
         jPanel1.setBackground(new java.awt.Color(204, 153, 255));
 
@@ -135,12 +88,12 @@ public class FineView extends javax.swing.JFrame {
             }
         });
 
-        btnFine1.setBackground(new java.awt.Color(204, 0, 255));
-        btnFine1.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
-        btnFine1.setText("Fine");
-        btnFine1.addActionListener(new java.awt.event.ActionListener() {
+        btnFine.setBackground(new java.awt.Color(204, 0, 255));
+        btnFine.setFont(new java.awt.Font("Maiandra GD", 1, 18)); // NOI18N
+        btnFine.setText("Fine");
+        btnFine.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFine1ActionPerformed(evt);
+                btnFineActionPerformed(evt);
             }
         });
 
@@ -162,7 +115,7 @@ public class FineView extends javax.swing.JFrame {
             .addComponent(btnMember, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnBorrowBook, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
             .addComponent(btnReturnBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnFine1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnFine, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,11 +132,18 @@ public class FineView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReturnBook, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFine1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFine, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        lblHeader.setBackground(new java.awt.Color(153, 153, 255));
+        lblHeader.setFont(new java.awt.Font("Segoe UI Variable", 1, 36)); // NOI18N
+        lblHeader.setForeground(new java.awt.Color(153, 102, 255));
+        lblHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHeader.setText("Home Page");
+        lblHeader.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,62 +151,27 @@ public class FineView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblPackSize)
-                            .addComponent(lblPackSize1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(36, 36, 36)
-                                .addComponent(btnFine))
-                            .addComponent(btnPay)
-                            .addComponent(lblFineAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 207, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFine)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblPackSize1)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFineAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblPackSize))
-                .addGap(18, 18, 18)
-                .addComponent(btnPay)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(515, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTransactionCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTransactionCodeActionPerformed
+    private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTransactionCodeActionPerformed
-
-    private void btnFineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFineActionPerformed
-        // TODO add your handling code here:
-        searchFine();
-    }//GEN-LAST:event_btnFineActionPerformed
-
-    private void btnPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayActionPerformed
-        // TODO add your handling code here:
-        PayFine();
-    }//GEN-LAST:event_btnPayActionPerformed
+        this.setVisible(false);
+        new CategoryView().setVisible(true);
+    }//GEN-LAST:event_btnCategoryActionPerformed
 
     private void btnBook(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBook
         // TODO add your handling code here:
@@ -260,12 +185,6 @@ public class FineView extends javax.swing.JFrame {
         new MemberView().setVisible(true);
     }//GEN-LAST:event_btnMemberActionPerformed
 
-    private void btnCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCategoryActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-        new CategoryView().setVisible(true);
-    }//GEN-LAST:event_btnCategoryActionPerformed
-
     private void btnBorrowBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrowBookActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
@@ -278,11 +197,11 @@ public class FineView extends javax.swing.JFrame {
         new BookReturnView().setVisible(true);
     }//GEN-LAST:event_btnReturnBookActionPerformed
 
-    private void btnFine1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFine1ActionPerformed
+    private void btnFineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFineActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
+       this.setVisible(false);
         new FineView().setVisible(true);
-    }//GEN-LAST:event_btnFine1ActionPerformed
+    }//GEN-LAST:event_btnFineActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
@@ -307,20 +226,20 @@ public class FineView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FineView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HomeView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FineView().setVisible(true);
+                new HomeView().setVisible(true);
             }
         });
     }
@@ -330,46 +249,10 @@ public class FineView extends javax.swing.JFrame {
     private javax.swing.JButton btnBorrowBook;
     private javax.swing.JButton btnCategory;
     private javax.swing.JButton btnFine;
-    private javax.swing.JButton btnFine1;
     private javax.swing.JButton btnMember;
-    private javax.swing.JButton btnPay;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnReturnBook;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblFineAmount;
     private javax.swing.JLabel lblHeader;
-    private javax.swing.JLabel lblPackSize;
-    private javax.swing.JLabel lblPackSize1;
-    private javax.swing.JTextField txtTransactionCode;
     // End of variables declaration//GEN-END:variables
-
-    private void searchFine() {
-        try {
-            String Code = txtTransactionCode.getText();
-            FineDto fineDto = TRANSACTION_CONTROLLER.getFine(Code);
-
-            if (fineDto != null) {
-                lblFineAmount.setText(String.valueOf(fineDto.getAmount()));
-            } else {
-                lblFineAmount.setText("Fine amount Not Found");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }
-
-    private void PayFine() {
-        try {
-            FineDto fineDto = new FineDto(
-                    txtTransactionCode.getText(),
-                    true
-            );
-            String resp = TRANSACTION_CONTROLLER.update(fineDto);
-            JOptionPane.showMessageDialog(this, resp);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
-        }
-    }
 }

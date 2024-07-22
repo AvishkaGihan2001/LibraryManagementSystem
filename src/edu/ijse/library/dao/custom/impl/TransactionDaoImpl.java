@@ -23,7 +23,7 @@ public class TransactionDaoImpl implements TransactionDao {
     public String save(TransactionEntity transactionEntity) throws Exception {
         boolean isSaved = CrudUtil.executeUpdate(
                 "INSERT INTO transaction (code, bookID, memberID, borrowDate, dueDate, returnDate, fine) "
-                + "SELECT ?, b.bookID, m.memberID, ?, ?, NULL, NULL "
+                + "SELECT ?, b.bookID, m.memberID, ?, ?, NULL, 0 "
                 + "FROM book b "
                 + "INNER JOIN member m ON b.code = ? AND m.code = ?",
                 transactionEntity.getTransactionCode(),
@@ -37,12 +37,20 @@ public class TransactionDaoImpl implements TransactionDao {
 
     @Override
     public TransactionDto get(String code) throws Exception {
-        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM transaction WHERE code = ?", code);
+        String query = "SELECT t.code, t.bookID, t.memberID, t.borrowDate, t.dueDate, t.returnDate, t.fine, "
+                + "b.code AS bookCode, m.code AS memberCode "
+                + "FROM transaction t "
+                + "INNER JOIN book b ON t.bookID = b.bookID "
+                + "INNER JOIN member m ON t.memberID = m.memberID "
+                + "WHERE t.code = ?";
+
+        ResultSet rst = CrudUtil.executeQuery(query, code);
+
         if (rst.next()) {
             TransactionDto transactionDto = new TransactionDto(
                     rst.getString("code"),
-                    rst.getString("bookID"),
-                    rst.getString("memberID"),
+                    rst.getString("bookCode"),
+                    rst.getString("memberCode"),
                     rst.getString("borrowDate"),
                     rst.getString("dueDate"),
                     rst.getString("returnDate"),
@@ -133,7 +141,7 @@ public class TransactionDaoImpl implements TransactionDao {
     @Override
     public String update(TransactionEntity transactionEntity) throws Exception {
         boolean isUpdated = CrudUtil.executeUpdate(
-                "UPDATE transaction SET fine = 0 WHERE code = ?",
+                "UPDATE transaction SET fine = -1 WHERE code = ?",
                 transactionEntity.getTransactionCode()
         );
         return isUpdated ? "Success" : "Fail";
