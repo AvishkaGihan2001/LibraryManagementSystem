@@ -498,6 +498,7 @@ public class CategoryView extends javax.swing.JFrame {
             );
             String resp = CATEGORY_CONTROLLER.save(categoryDto);
             JOptionPane.showMessageDialog(this, resp);
+            loadTable();
             clear();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());

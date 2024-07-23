@@ -10,6 +10,7 @@ import edu.ijse.library.controller.TransactionController;
 import edu.ijse.library.dto.BookDto;
 import edu.ijse.library.dto.MemberDto;
 import edu.ijse.library.dto.TransactionDto;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -48,7 +49,6 @@ public class BookBorrowView extends javax.swing.JFrame {
         txtBookCode = new javax.swing.JTextField();
         lblPackSize2 = new javax.swing.JLabel();
         btnMemberSearch = new javax.swing.JButton();
-        txtBorrowDate = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         TransactionTable = new javax.swing.JTable();
         btnPlaceTransaction = new javax.swing.JButton();
@@ -59,7 +59,6 @@ public class BookBorrowView extends javax.swing.JFrame {
         lblPackSize = new javax.swing.JLabel();
         btnBookSearch = new javax.swing.JButton();
         lblPackSize3 = new javax.swing.JLabel();
-        txtDueDate = new javax.swing.JTextField();
         lblMemberDetails = new javax.swing.JLabel();
         lblBookDetails = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -70,6 +69,8 @@ public class BookBorrowView extends javax.swing.JFrame {
         btnReturnBook2 = new javax.swing.JButton();
         btnFine2 = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
+        txtBorrowDate = new com.toedter.calendar.JDateChooser();
+        txtDueDate = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,13 +96,6 @@ public class BookBorrowView extends javax.swing.JFrame {
         btnMemberSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMemberSearchActionPerformed(evt);
-            }
-        });
-
-        txtBorrowDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtBorrowDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBorrowDateActionPerformed(evt);
             }
         });
 
@@ -174,13 +168,6 @@ public class BookBorrowView extends javax.swing.JFrame {
 
         lblPackSize3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblPackSize3.setText("Due Date   :");
-
-        txtDueDate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtDueDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDueDateActionPerformed(evt);
-            }
-        });
 
         lblMemberDetails.setFont(new java.awt.Font("SimSun", 1, 18)); // NOI18N
 
@@ -289,49 +276,51 @@ public class BookBorrowView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnPlaceTransaction)
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPackSize)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblItemCode)
-                                        .addComponent(lblDescription)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtBookCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtMemberCode, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtTransactionCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(lblPackSize)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblItemCode)
+                                                .addComponent(lblDescription)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtBookCode, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(txtMemberCode, javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(txtTransactionCode, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(lblPackSize2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtBorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnMemberSearch)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblMemberDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblPackSize3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnBookSearch)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblBookDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(0, 24, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblPackSize2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtBorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnMemberSearch)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblMemberDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 305, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblPackSize3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBookSearch)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblBookDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 24, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2)
+                                .addContainerGap())
+                            .addComponent(lblHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2)
-                        .addContainerGap())
-                    .addComponent(lblHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPlaceTransaction)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -355,14 +344,15 @@ public class BookBorrowView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPackSize)
-                            .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtBorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPackSize2)
-                            .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblPackSize3)))
+                            .addComponent(txtTransactionCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblMemberDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblPackSize2)
+                        .addComponent(lblPackSize3)
+                        .addComponent(txtBorrowDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDueDate, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
                 .addComponent(btnPlaceTransaction)
                 .addGap(18, 18, 18)
@@ -404,18 +394,10 @@ public class BookBorrowView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMemberCodeActionPerformed
 
-    private void txtBorrowDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBorrowDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBorrowDateActionPerformed
-
     private void btnBookSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookSearchActionPerformed
         // TODO add your handling code here:
         searchBook();
     }//GEN-LAST:event_btnBookSearchActionPerformed
-
-    private void txtDueDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDueDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDueDateActionPerformed
 
     private void btnBook2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBook2
         // TODO add your handling code here:
@@ -517,8 +499,8 @@ public class BookBorrowView extends javax.swing.JFrame {
     private javax.swing.JLabel lblPackSize2;
     private javax.swing.JLabel lblPackSize3;
     private javax.swing.JTextField txtBookCode;
-    private javax.swing.JTextField txtBorrowDate;
-    private javax.swing.JTextField txtDueDate;
+    private com.toedter.calendar.JDateChooser txtBorrowDate;
+    private com.toedter.calendar.JDateChooser txtDueDate;
     private javax.swing.JTextField txtMemberCode;
     private javax.swing.JTextField txtTransactionCode;
     // End of variables declaration//GEN-END:variables
@@ -574,18 +556,22 @@ public class BookBorrowView extends javax.swing.JFrame {
 
                 String respBook = BOOK_CONTROLLER.updateQuantity(bookDto1);
 
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String borrowDate = dateFormat.format(txtBorrowDate.getDate());
+                String dueDate = dateFormat.format(txtDueDate.getDate());
+
                 if (respBook.equals("Success")) {
                     TransactionDto transactionDto = new TransactionDto(
                             txtTransactionCode.getText(),
                             txtBookCode.getText(),
                             txtMemberCode.getText(),
-                            txtBorrowDate.getText(),
-                            txtDueDate.getText()
+                            borrowDate,
+                            dueDate
                     );
 
                     String resp = TRANSACTION_CONTROLLER.save(transactionDto);
                     JOptionPane.showMessageDialog(this, resp);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(this, "Failed to update book quantity");
                 }
 
@@ -605,8 +591,8 @@ public class BookBorrowView extends javax.swing.JFrame {
         txtTransactionCode.setText("");
         txtBookCode.setText("");
         txtMemberCode.setText("");
-        txtBorrowDate.setText("");
-        txtDueDate.setText("");
+        txtBorrowDate.setDate(null);
+        txtDueDate.setDate(null);
         lblBookDetails.setText("");
         lblMemberDetails.setText("");
     }
