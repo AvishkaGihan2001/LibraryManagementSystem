@@ -429,6 +429,7 @@ public class BookReturnView extends javax.swing.JFrame {
 
     private void completeTransaction() {
         try {
+
             String returnDateString = LocalDate.now().toString();
             String dueDateString = lblDueDate.getText();  // Assuming lblDueDate is a JLabel or similar component
 
@@ -501,6 +502,7 @@ public class BookReturnView extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, resp);
                 }
+
             }
 
             clear();
@@ -511,6 +513,9 @@ public class BookReturnView extends javax.swing.JFrame {
     }
 
     private void clear() {
+        lblBookDetails.setText("");
+        lblMemberDetails.setText("");
+        lblDueDate.setText("");
         txtTransactionCode.setText("");
     }
 

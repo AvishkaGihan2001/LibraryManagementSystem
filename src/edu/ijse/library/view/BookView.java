@@ -683,6 +683,7 @@ public class BookView extends javax.swing.JFrame {
             String code = txtcode.getText();
             String resp = BOOK_CONTROLLER.delete(code);
             JOptionPane.showMessageDialog(this, resp);
+            loadTable();
             clear();
 
         } catch (Exception e) {

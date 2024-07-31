@@ -521,6 +521,7 @@ public class CategoryView extends javax.swing.JFrame {
             );
             String resp = CATEGORY_CONTROLLER.update(categoryDto);
             JOptionPane.showMessageDialog(this, resp);
+            loadTable();
             clear();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -532,6 +533,7 @@ public class CategoryView extends javax.swing.JFrame {
             String code = txtCode.getText();
             String resp = CATEGORY_CONTROLLER.delete(code);
             JOptionPane.showMessageDialog(this, resp);
+            loadTable();
             clear();
 
         } catch (Exception e) {

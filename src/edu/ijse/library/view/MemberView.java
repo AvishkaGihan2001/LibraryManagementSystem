@@ -550,6 +550,7 @@ public class MemberView extends javax.swing.JFrame {
             );
             String resp = MEMBER_CONTROLLER.save(memberDto);
             JOptionPane.showMessageDialog(this, resp);
+            loadTable();
             clear();
 
         } catch (Exception e) {
@@ -577,6 +578,7 @@ public class MemberView extends javax.swing.JFrame {
             );
             String resp = MEMBER_CONTROLLER.update(memberDto);
             JOptionPane.showMessageDialog(this, resp);
+            loadTable();
             clear();
 
         } catch (Exception e) {
@@ -589,6 +591,7 @@ public class MemberView extends javax.swing.JFrame {
             String code = txtCode.getText();
             String resp = MEMBER_CONTROLLER.delete(code);
             JOptionPane.showMessageDialog(this, resp);
+            loadTable();
             clear();
 
         } catch (Exception e) {
