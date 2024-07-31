@@ -628,7 +628,7 @@ public class BookView extends javax.swing.JFrame {
                     publisheDate,
                     txtDescription.getText(),
                     Integer.parseInt(txtQty.getText()),
-                    txtCategoryID.getSelectedIndex()
+                    txtCategoryID.getSelectedIndex() + 1
             );
 
             String resp = BOOK_CONTROLLER.save(bookDto);
@@ -704,7 +704,7 @@ public class BookView extends javax.swing.JFrame {
                 txtPublishedDate.setDate(dateFormat.parse(bookDto.getPublishedDate()));
                 txtDescription.setText(bookDto.getDescription());
                 txtQty.setText(Integer.toString(bookDto.getQuantity()));
-                txtCategoryID.setSelectedIndex(bookDto.getCategoryID());
+                txtCategoryID.setSelectedIndex(bookDto.getCategoryID()- 1);
                 
                 System.out.println(bookDto.getCategoryID());
 
